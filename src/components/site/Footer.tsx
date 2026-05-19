@@ -6,11 +6,11 @@ export function Footer() {
     <footer className="bg-navy-deep text-navy-foreground relative overflow-hidden">
       <div className="absolute inset-0 hex-grid opacity-50 pointer-events-none" />
       <div className="relative mx-auto max-w-7xl px-6 py-16">
-        <div className="grid gap-12 md:grid-cols-4">
-          <div className="md:col-span-1">
+        <div className="grid gap-12 md:grid-cols-[2fr_1fr_1fr_1.5fr]">
+          <div>
             <img src={logoImg} alt="Pack-Wise" className="h-9 w-auto" />
             <p className="mt-4 text-sm text-white/60 leading-relaxed">
-              Engineering pharmaceutical operations from production to global distribution.
+              Where pharmaceutical expertise meets operational execution.
             </p>
           </div>
 
