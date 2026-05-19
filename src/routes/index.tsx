@@ -32,16 +32,9 @@ function HomePage() {
           <div className="absolute inset-0 hex-grid opacity-40" />
         </div>
 
-        <div className="relative mx-auto max-w-7xl px-6 pt-28 pb-32 md:pt-40 md:pb-44">
+        <div className="relative mx-auto max-w-7xl px-6 py-16 md:py-24">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-bio/30 bg-bio/10 px-3 py-1.5">
-              <span className="h-1.5 w-1.5 hex-clip bg-bio" />
-              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-bio">
-                Pharmaceutical Consulting
-              </span>
-            </div>
-
-            <h1 className="mt-6 font-display text-4xl md:text-6xl lg:text-7xl font-semibold leading-[1.02] tracking-tight">
+            <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-semibold leading-[1.02] tracking-tight">
               Optimizing Pharmaceutical Operations from{" "}
               <span className="text-bio">Production to Packaging.</span>
             </h1>
@@ -100,6 +93,7 @@ function HomePage() {
         <div className="absolute inset-0 hex-grid opacity-30" />
         <div className="relative mx-auto max-w-7xl px-6 py-24 md:py-32">
           <SectionHeader
+            dark
             eyebrow="Why Pack-Wise"
             title="Compliance, precision, and speed — engineered as one operating standard."
           />

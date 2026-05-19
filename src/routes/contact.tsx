@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { toast } from "sonner";
 import { z } from "zod";
-import { Mail, MapPin, ShieldCheck, Loader2 } from "lucide-react";
+import { Mail, MapPin, ShieldCheck, Loader2, Phone } from "lucide-react";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -82,8 +82,9 @@ function ContactPage() {
               </p>
 
               <div className="mt-12 space-y-6">
-                <InfoRow icon={<Mail size={18} />} label="Secure Corporate Email" value="executive@pack-wise.com" />
-                <InfoRow icon={<MapPin size={18} />} label="Headquarters" value="Pharma Quarter — by appointment" />
+                <InfoRow icon={<Phone size={18} />} label="USA" value="+1 640-203-0743" />
+                <InfoRow icon={<Phone size={18} />} label="India" value="+91 9820 924862" />
+                <InfoRow icon={<Mail size={18} />} label="Email" value="kundanshah73@gmail.com" />
                 <InfoRow icon={<ShieldCheck size={18} />} label="Confidentiality" value="NDA available on request" />
               </div>
             </div>

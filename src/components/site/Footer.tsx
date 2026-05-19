@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import logoImg from "@/assets/logo-light.png";
 
 export function Footer() {
   return (
@@ -7,14 +8,7 @@ export function Footer() {
       <div className="relative mx-auto max-w-7xl px-6 py-16">
         <div className="grid gap-12 md:grid-cols-4">
           <div className="md:col-span-1">
-            <div className="flex items-center gap-2.5">
-              <span className="hex-clip flex h-10 w-11 items-center justify-center bg-bio text-navy font-display font-bold text-sm">
-                PW
-              </span>
-              <span className="font-display text-xl font-semibold tracking-tight">
-                Pack-Wise
-              </span>
-            </div>
+            <img src={logoImg} alt="Pack-Wise" className="h-9 w-auto" />
             <p className="mt-4 text-sm text-white/60 leading-relaxed">
               Engineering pharmaceutical operations from production to global distribution.
             </p>
@@ -37,8 +31,9 @@ export function Footer() {
               Headquarters
             </h4>
             <p className="mt-4 text-sm text-white/60 leading-relaxed">
-              executive@pack-wise.com<br />
-              Pharma Quarter — Confidential Briefs Only
+              kundanshah73@gmail.com<br />
+              🇺🇸 +1 640-203-0743<br />
+              🇮🇳 +91 9820 924862
             </p>
           </div>
         </div>

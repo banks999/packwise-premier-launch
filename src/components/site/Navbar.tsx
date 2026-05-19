@@ -29,13 +29,12 @@ export function Navbar() {
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <Link to="/" className="flex items-center gap-2.5 group">
-          <span className="hex-clip flex h-9 w-10 items-center justify-center bg-navy text-bio font-display font-bold text-sm">
-            PW
-          </span>
-          <span className="font-display text-lg font-semibold tracking-tight text-navy">
-            Pack-Wise
-          </span>
+        <Link to="/" className="group">
+          <img
+            src="/src/assets/logo.png"
+            alt="Pack-Wise"
+            className="h-10 w-auto"
+          />
         </Link>
 
         <nav className="hidden md:flex items-center gap-9">

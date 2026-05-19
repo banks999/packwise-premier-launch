@@ -96,31 +96,37 @@ function AboutPage() {
         </div>
       </section>
 
-      {/* Advisory Profiles */}
+      {/* Founder's Story */}
       <section className="mx-auto max-w-7xl px-6 py-24 md:py-32">
-        <SectionHeader eyebrow="Advisory Bench" title="Senior pharmaceutical consultants and plant engineers." />
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {[
-            { name: "Dr. A. Kessler", role: "Regulatory Affairs Director", tag: "EMA / FDA" },
-            { name: "M. Aubert", role: "Senior Plant Engineer", tag: "Turnkey Execution" },
-            { name: "Dr. S. Rahmani", role: "Commercial Strategy Partner", tag: "MENA / EU" },
-            { name: "L. Vermeer", role: "Supply Chain Architect", tag: "GMP Sourcing" },
-          ].map((m) => (
-            <div key={m.name} className="group rounded-xl border border-border bg-card p-6 hover:border-navy/40 transition-all">
-              <div className="aspect-[4/5] rounded-lg bg-gradient-to-br from-navy/90 to-navy-deep hex-grid relative overflow-hidden">
-                <div className="absolute bottom-4 left-4">
-                  <span className="hex-clip inline-flex h-10 w-11 items-center justify-center bg-bio text-navy font-display font-semibold text-sm">
-                    {m.name.split(" ").map((n) => n[0]).join("")}
-                  </span>
-                </div>
-              </div>
-              <div className="mt-5">
-                <div className="text-xs font-semibold uppercase tracking-wider text-bio-foreground/60">{m.tag}</div>
-                <h3 className="mt-1.5 font-display text-lg font-semibold text-navy">{m.name}</h3>
-                <p className="text-sm text-muted-foreground">{m.role}</p>
+        <SectionHeader eyebrow="Founder's Story" title="The conviction behind Pack-Wise." />
+        <div className="mt-14 grid gap-12 lg:grid-cols-[280px_1fr] items-start">
+          {/* Founder profile card */}
+          <div className="rounded-xl border border-border bg-card p-6">
+            <div className="aspect-[4/5] rounded-lg bg-gradient-to-br from-navy/90 to-navy-deep hex-grid relative overflow-hidden">
+              <div className="absolute bottom-4 left-4">
+                <span className="hex-clip inline-flex h-10 w-11 items-center justify-center bg-bio text-navy font-display font-semibold text-sm">
+                  KS
+                </span>
               </div>
             </div>
-          ))}
+            <div className="mt-5">
+              <div className="text-xs font-semibold uppercase tracking-wider text-bio-foreground/60">Founder & CEO</div>
+              <h3 className="mt-1.5 font-display text-xl font-semibold text-navy">Kundanraj Shah</h3>
+              <p className="text-sm text-muted-foreground">Pack-Wise</p>
+            </div>
+          </div>
+
+          {/* Narrative */}
+          <div className="space-y-6 text-base md:text-lg text-foreground/80 leading-relaxed">
+            <p className="italic text-muted-foreground border-l-2 border-bio pl-5">
+              {/* TODO: Add founder quote here */}
+              "Add founder quote here."
+            </p>
+            <p>
+              {/* TODO: Replace with Kundanraj Shah's story */}
+              Founder's story coming soon.
+            </p>
+          </div>
         </div>
       </section>
     </>
