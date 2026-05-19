@@ -70,26 +70,6 @@ function HomePage() {
         </div>
       </section>
 
-      {/* Trust Stats */}
-      <section className="border-y border-border bg-slate-canvas">
-        <div className="mx-auto max-w-7xl px-6 py-12 grid grid-cols-2 md:grid-cols-4 gap-8">
-          {[
-            { k: "48+", v: "Plants Engineered" },
-            { k: "120+", v: "Supply Partners Connected" },
-            { k: "100%", v: "Regulatory Compliance Rate" },
-            { k: "32", v: "Global Markets Served" },
-          ].map((s) => (
-            <div key={s.v} className="text-center md:text-left">
-              <div className="font-display text-4xl md:text-5xl font-semibold text-navy">
-                {s.k}
-              </div>
-              <div className="mt-1 text-xs md:text-sm uppercase tracking-wider text-muted-foreground">
-                {s.v}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
 
       {/* Sector Focus Split */}
       <section className="mx-auto max-w-7xl px-6 py-24 md:py-32">
