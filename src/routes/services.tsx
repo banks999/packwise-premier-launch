@@ -1,15 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SectionHeader } from "@/components/site/SectionHeader";
-import { TrendingUp, Building2, Network, ArrowRight, Check } from "lucide-react";
+import { Layers, ShieldCheck, Network, PenLine, TrendingDown, ClipboardList, ArrowRight, Check } from "lucide-react";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Services — Core Pharmaceutical Capabilities | Pack-Wise" },
+      { title: "Services — Core Packaging Capabilities | Pack-Wise" },
       {
         name: "description",
         content:
-          "Commercial acceleration, turnkey plant engineering, and global supply chain integration for pharmaceutical operators.",
+          "End-to-end pharmaceutical packaging consulting from strategy and compliance to vendor sourcing and cost optimization.",
       },
     ],
   }),
@@ -19,38 +19,74 @@ export const Route = createFileRoute("/services")({
 const services = [
   {
     n: "01",
-    icon: <TrendingUp size={22} />,
-    title: "B2B Commercialization & Sales Acceleration",
-    body: "We help pharma brands rapidly expand distribution, optimize commercial strategies, and maximize global market penetration with operator-grade execution.",
+    icon: <Layers size={22} />,
+    title: "Packaging Strategy & Development",
+    body: "We translate complex product requirements into robust, market-ready packaging strategies. From material selection to format engineering, we ensure your packaging protects the product and the brand.",
     bullets: [
-      "Distribution network mapping and qualification",
-      "Regulated market entry playbooks (EU, MENA, Asia)",
-      "Commercial pricing and tender optimization",
-      "Strategic partner identification and brokerage",
+      "Primary & secondary packaging design",
+      "Material compatibility and stability guidance",
+      "Sustainable packaging alternatives",
+      "Format optimization for manufacturing"
     ],
   },
   {
     n: "02",
-    icon: <Building2 size={22} />,
-    title: "Turnkey Plant Engineering & Setup",
-    body: "Full-scale operational design, regulatory-compliant facility setup, and end-to-end pharmaceutical plant execution — delivered under one accountability line.",
+    icon: <ShieldCheck size={22} />,
+    title: "Regulatory Compliance Support",
+    body: "Navigate the complex web of global pharmaceutical regulations with confidence. We ensure your packaging and labeling meet the strictest standards of major global health authorities.",
     bullets: [
-      "Concept design through commissioning",
-      "GMP, EU Annex 1, and FDA-aligned layouts",
-      "Equipment selection, sourcing, and validation",
-      "Documentation packages and audit readiness",
+      "USFDA, EMA, and global market compliance",
+      "Serialization and Track & Trace implementation",
+      "Child-resistant and senior-friendly formats",
+      "Tamper-evident packaging solutions"
     ],
   },
   {
     n: "03",
     icon: <Network size={22} />,
-    title: "Global Supply Chain Integration",
-    body: "Connecting pharma companies with premium, certified raw material suppliers and high-grade packaging manufacturers for polymer bottles, film bags, and blister foils.",
+    title: "Vendor Sourcing & Management",
+    body: "Access our pre-qualified global network of premium packaging manufacturers. We handle the sourcing, auditing, and relationship management to secure your supply chain.",
     bullets: [
-      "Qualified supplier identification and audit",
-      "Primary packaging sourcing (polymer, foil, film)",
-      "Multi-region supply resilience architecture",
-      "Long-term commercial framework negotiation",
+      "Supplier identification and qualification",
+      "Rigid plastics, glass, and flexible films",
+      "Quality audits and corrective action (CAPA)",
+      "Contract negotiation and terms"
+    ],
+  },
+  {
+    n: "04",
+    icon: <PenLine size={22} />,
+    title: "Artwork & Design Coordination",
+    body: "Bridging the gap between marketing aesthetics and regulatory mandates. We manage the artwork lifecycle to ensure compliance without compromising brand identity.",
+    bullets: [
+      "Regulatory-compliant artwork creation",
+      "Leaflets, IFUs, and Medication Guides",
+      "Labeling control and version management",
+      "Print proofing and color consistency"
+    ],
+  },
+  {
+    n: "05",
+    icon: <TrendingDown size={22} />,
+    title: "Cost Optimization",
+    body: "Reduce packaging-related expenses while maintaining or improving quality. We analyze your current packaging spend and implement strategic cost-saving initiatives.",
+    bullets: [
+      "Packaging spend and value analysis",
+      "Material downgauging and right-sizing",
+      "Supply base consolidation",
+      "Logistics and palletization efficiency"
+    ],
+  },
+  {
+    n: "06",
+    icon: <ClipboardList size={22} />,
+    title: "Project Management",
+    body: "Seamless execution from initial concept through commercialization. We coordinate all stakeholders to accelerate timelines and eliminate bottlenecks.",
+    bullets: [
+      "Cross-functional team leadership",
+      "Timeline and milestone tracking",
+      "Risk identification and mitigation",
+      "Launch readiness and commercial rollout"
     ],
   },
 ];
@@ -66,11 +102,11 @@ function ServicesPage() {
               Our Capabilities
             </span>
             <h1 className="mt-4 font-display text-4xl md:text-6xl font-semibold leading-[1.05]">
-              Three core practices.{" "}
+              Six core practices.{" "}
               <span className="text-bio">One operating standard.</span>
             </h1>
             <p className="mt-6 max-w-2xl text-white/70 text-lg leading-relaxed">
-              Pack-Wise engagements integrate commercial, engineering, and supply
+              Pack-Wise engagements integrate strategic development, compliance, and supply
               chain disciplines into a single, accountable mandate.
             </p>
           </div>
@@ -115,9 +151,9 @@ function ServicesPage() {
         <div className="pt-10 text-center">
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 rounded-md bg-bio px-6 py-3.5 text-sm font-semibold text-navy hover:bg-bio/90 hover:shadow-xl hover:shadow-bio/30 transition-all"
+            className="inline-flex items-center gap-2 rounded-md bg-bio px-7 py-4 text-sm font-semibold text-navy hover:bg-bio/90 hover:shadow-xl hover:shadow-bio/30 transition-all"
           >
-            Submit a Confidential Brief
+            Schedule a Consultation
             <ArrowRight size={16} />
           </Link>
         </div>

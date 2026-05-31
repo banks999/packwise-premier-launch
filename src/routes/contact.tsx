@@ -3,6 +3,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { z } from "zod";
 import { Mail, MapPin, ShieldCheck, Loader2, Phone } from "lucide-react";
+import logoImg from "@/assets/logo-light.png";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -36,27 +37,55 @@ function ContactPage() {
     sector: "" as "" | "Pharma Manufacturer" | "Packaging Producer" | "Other",
     brief: "",
   });
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
 
-  const update = <K extends keyof typeof form>(k: K, v: (typeof form)[K]) =>
+  const update = <K extends keyof typeof form>(k: K, v: (typeof form)[K]) => {
     setForm((f) => ({ ...f, [k]: v }));
+    // Clear error for field when user starts typing
+    if (errors[k]) setErrors((e) => ({ ...e, [k]: "" }));
+  };
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const parsed = schema.safeParse(form);
+    
     if (!parsed.success) {
-      toast.error(parsed.error.issues[0].message);
+      const newErrors: Record<string, string> = {};
+      parsed.error.issues.forEach((issue) => {
+        if (issue.path[0]) newErrors[issue.path[0].toString()] = issue.message;
+      });
+      setErrors(newErrors);
+      toast.error("Please fix the errors in the form.");
       return;
     }
+    
+    setErrors({});
     setLoading(true);
+    
     try {
-      await new Promise((r) => setTimeout(r, 1200));
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: "YOUR_WEB3FORMS_ACCESS_KEY_HERE", // Replace with a free key from Web3Forms.com
+          subject: `New Project Brief from ${form.company}`,
+          from_name: form.fullName,
+          email: form.email,
+          company: form.company,
+          sector: form.sector,
+          message: form.brief,
+        }),
+      });
+
+      if (!res.ok) throw new Error("Submission failed");
+
       toast.success("Brief received", {
         description: "An executive advisor will respond within 24 business hours.",
       });
       setForm({ fullName: "", email: "", company: "", sector: "", brief: "" });
     } catch {
-      toast.error("Something went wrong. Please retry.");
+      toast.error("Something went wrong. Please check your connection and retry.");
     } finally {
       setLoading(false);
     }
@@ -70,9 +99,7 @@ function ContactPage() {
           <div className="rounded-2xl bg-navy-deep text-navy-foreground p-10 md:p-12 relative overflow-hidden">
             <div className="absolute inset-0 hex-grid opacity-40" />
             <div className="relative">
-              <span className="hex-clip inline-flex h-14 w-16 items-center justify-center bg-bio text-navy font-display font-bold text-lg">
-                PW
-              </span>
+              <img src={logoImg} alt="Pack-Wise" className="h-10 w-auto" />
               <h1 className="mt-8 font-display text-3xl md:text-4xl font-semibold leading-tight">
                 Connect with an Executive Advisor.
               </h1>
@@ -97,42 +124,42 @@ function ContactPage() {
               <p className="mt-1.5 text-sm text-muted-foreground">All fields required. Reviewed under NDA.</p>
             </div>
 
-            <Field label="Full Name">
+            <Field label="Full Name" error={errors.fullName}>
               <input
                 value={form.fullName}
                 onChange={(e) => update("fullName", e.target.value)}
                 maxLength={100}
-                className={inputCls}
+                className={inputCls(!!errors.fullName)}
                 placeholder="Dr. Jane Doe"
               />
             </Field>
 
-            <Field label="Corporate Email">
+            <Field label="Corporate Email" error={errors.email}>
               <input
                 type="email"
                 value={form.email}
                 onChange={(e) => update("email", e.target.value)}
                 maxLength={255}
-                className={inputCls}
+                className={inputCls(!!errors.email)}
                 placeholder="j.doe@company.com"
               />
             </Field>
 
-            <Field label="Company Name">
+            <Field label="Company Name" error={errors.company}>
               <input
                 value={form.company}
                 onChange={(e) => update("company", e.target.value)}
                 maxLength={150}
-                className={inputCls}
+                className={inputCls(!!errors.company)}
                 placeholder="Acme Pharmaceuticals"
               />
             </Field>
 
-            <Field label="Sector">
+            <Field label="Sector" error={errors.sector}>
               <select
                 value={form.sector}
                 onChange={(e) => update("sector", e.target.value as typeof form.sector)}
-                className={inputCls + " appearance-none bg-white"}
+                className={inputCls(!!errors.sector) + " appearance-none bg-white"}
               >
                 <option value="">Select a sector…</option>
                 <option>Pharma Manufacturer</option>
@@ -141,13 +168,13 @@ function ContactPage() {
               </select>
             </Field>
 
-            <Field label="Project Brief">
+            <Field label="Project Brief" error={errors.brief}>
               <textarea
                 value={form.brief}
                 onChange={(e) => update("brief", e.target.value)}
                 maxLength={2000}
                 rows={5}
-                className={inputCls + " resize-none"}
+                className={inputCls(!!errors.brief) + " resize-none"}
                 placeholder="Describe scope, timeline, and key constraints…"
               />
             </Field>
@@ -173,13 +200,18 @@ function ContactPage() {
   );
 }
 
-const inputCls =
-  "w-full rounded-md border border-input bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 outline-none transition-all focus:border-navy focus:ring-2 focus:ring-navy/20";
+const inputCls = (hasError: boolean) =>
+  `w-full rounded-md border ${
+    hasError ? "border-destructive/60 bg-destructive/5 focus:ring-destructive/20" : "border-input bg-background focus:ring-navy/20"
+  } px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 outline-none transition-all focus:border-navy focus:ring-2`;
 
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
+function Field({ label, error, children }: { label: string; error?: string; children: React.ReactNode }) {
   return (
     <label className="block">
-      <span className="text-xs font-semibold uppercase tracking-wider text-navy/70">{label}</span>
+      <div className="flex justify-between items-baseline">
+        <span className="text-xs font-semibold uppercase tracking-wider text-navy/70">{label}</span>
+        {error && <span className="text-xs font-medium text-destructive">{error}</span>}
+      </div>
       <div className="mt-2">{children}</div>
     </label>
   );

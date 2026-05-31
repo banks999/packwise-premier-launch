@@ -21,9 +21,9 @@ export function Footer() {
           ]} />
 
           <FooterCol title="Capabilities" items={[
-            { label: "Commercialization", to: "/services" },
-            { label: "Plant Engineering", to: "/services" },
-            { label: "Supply Chain", to: "/services" },
+            { label: "Packaging Strategy", to: "/services" },
+            { label: "Regulatory Compliance", to: "/services" },
+            { label: "Vendor Sourcing", to: "/services" },
           ]} />
 
           <div>

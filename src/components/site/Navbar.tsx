@@ -55,7 +55,7 @@ export function Navbar() {
             to="/contact"
             className="inline-flex items-center rounded-md bg-bio px-4 py-2.5 text-sm font-semibold text-navy ring-1 ring-navy/10 hover:bg-bio/90 hover:shadow-lg hover:shadow-bio/30 transition-all"
           >
-            Request a Consultation
+            Schedule a Consultation
           </Link>
         </div>
 
@@ -85,7 +85,7 @@ export function Navbar() {
             onClick={() => setOpen(false)}
             className="block text-center rounded-md bg-bio px-4 py-2.5 text-sm font-semibold text-navy"
           >
-            Request a Consultation
+            Schedule a Consultation
           </Link>
         </div>
       )}
