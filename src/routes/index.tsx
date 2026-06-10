@@ -5,6 +5,7 @@ import {
   Target, Sliders, Zap,
 } from "lucide-react";
 import { SectionHeader } from "@/components/site/SectionHeader";
+import { TrustedByMarquee } from "@/components/site/TrustedByMarquee";
 import heroImg from "@/assets/hero-plant.jpg";
 
 export const Route = createFileRoute("/")({
@@ -147,14 +148,10 @@ function HomePage() {
 
         {/* Trusted By Strip */}
         <div className="relative border-t border-white/10 bg-navy-deep py-8 text-center z-10">
-          <p className="text-xs font-semibold uppercase tracking-wider text-white/40 mb-6">Trusted by leading pharmaceutical manufacturers</p>
-          <div className="mx-auto flex max-w-5xl flex-wrap justify-center gap-8 md:gap-16 opacity-50 grayscale mix-blend-luminosity pb-4">
-            <div className="text-xl font-display font-bold text-white">PHARMA CORP</div>
-            <div className="text-xl font-display font-bold text-white">BIO-MED</div>
-            <div className="text-xl font-display font-bold text-white">GLOBAL HEALTH</div>
-            <div className="text-xl font-display font-bold text-white">APEX LABS</div>
-            <div className="text-xl font-display font-bold text-white">SYNTHESIS</div>
-          </div>
+          <p className="text-xs font-semibold uppercase tracking-wider text-white/40 mb-6">
+            Trusted by leading pharmaceutical manufacturers
+          </p>
+          <TrustedByMarquee />
         </div>
       </section>
 
