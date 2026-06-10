@@ -17,12 +17,11 @@ export const Route = createFileRoute("/about")({
 });
 
 const achievements = [
-  "Scaled business revenues from $X Mn to $Y Mn within X years through strategic customer acquisition and market expansion",
-  "Successfully developed and managed relationships with top-tier pharmaceutical companies, including [Client Name 1], [Client Name 2], [Client Name 3]",
-  "Led the execution of X+ large-scale packaging projects, ensuring compliance with USFDA, EU GMP, and global regulatory standards",
-  "Played a pivotal role in setting up / expanding manufacturing facilities, optimizing cost, quality, and delivery timelines",
-  "Introduced innovative packaging solutions that improved efficiency, reduced costs, and enhanced product integrity",
-  "Built and mentored high-performing teams, driving consistent business and operational growth",
+  "Delivered multi-million-dollar revenue growth, consistently outperforming business targets",
+  "Partnered with leading global and domestic pharmaceutical companies, becoming a trusted packaging advisor",
+  "Executed complex, compliance-critical packaging programs across regulated markets",
+  "Spearheaded plant expansions, new product introductions, and process optimizations",
+  "Known for solving high-stakes packaging challenges with speed, precision, and commercial impact",
 ];
 
 function AboutPage() {
@@ -147,7 +146,7 @@ function AboutPage() {
             </div>
 
             <div className="mt-10">
-              <h4 className="font-display text-xl font-semibold text-navy">Key Achievements</h4>
+              <h4 className="font-display text-xl font-semibold text-navy">Career Highlights</h4>
               <ul className="mt-6 space-y-4">
                 {achievements.map((a) => (
                   <li key={a} className="flex items-start gap-3">
@@ -162,10 +161,9 @@ function AboutPage() {
 
             <div className="mt-10 text-base md:text-lg text-foreground/80 leading-relaxed">
               <p>
-                Following his last leadership assignment, he identified a critical gap in the industry —
-                pharmaceutical companies needed smarter, more reliable, and solution-driven packaging support.
-                Driven by this vision, he founded <strong className="text-foreground font-semibold">PACK-WISE</strong>, a consultancy dedicated to
-                delivering end-to-end, innovative packaging solutions for pharmaceutical companies.
+                Recognizing a major gap between pharmaceutical requirements and packaging execution, he
+                founded <strong className="text-foreground font-semibold">PACK-WISE</strong>—a consultancy built to deliver practical,
+                result-oriented, and globally compliant packaging solutions.
               </p>
             </div>
           </div>
