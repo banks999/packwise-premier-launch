@@ -73,28 +73,51 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Pack-Wise — Pharmaceutical Operations Consulting" },
+      { name: "robots", content: "index, follow" },
+      { name: "keywords", content: "pharmaceutical packaging consulting, pharma packaging compliance, packaging sourcing consultant, packaging vendor management, FDA and EU GMP packaging support" },
+      { title: "Pack-Wise | Pharmaceutical Packaging Consulting & Compliance" },
       {
         name: "description",
         content:
-          "Pack-Wise helps pharmaceutical manufacturers scale sales, engineer turnkey production plants, and secure compliant global supply chains.",
+          "Pack-Wise delivers pharmaceutical packaging consulting, regulatory compliance support, packaging sourcing, and vendor management for global pharma companies.",
       },
-      { property: "og:title", content: "Pack-Wise — Pharmaceutical Operations Consulting" },
+      { property: "og:title", content: "Pack-Wise | Pharmaceutical Packaging Consulting & Compliance" },
       {
         property: "og:description",
         content:
-          "Authoritative consulting for pharma brands and specialized packaging manufacturers.",
+          "Specialized pharma packaging consulting for compliance, sourcing, artwork coordination, and cost optimization.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "Pack-Wise" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Pack-Wise | Pharmaceutical Packaging Consulting & Compliance" },
+      {
+        name: "twitter:description",
+        content:
+          "Pharma packaging consulting focused on compliance, vendor sourcing, and operational efficiency.",
+      },
     ],
     links: [
+      { rel: "canonical", href: "https://pack-wise.com/" },
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap",
+      },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Pack-Wise",
+          url: "https://pack-wise.com/",
+          description:
+            "Specialized pharmaceutical packaging consulting focused on compliance, sourcing, and operational efficiency.",
+        }),
       },
     ],
   }),

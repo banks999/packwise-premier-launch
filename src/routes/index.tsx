@@ -11,12 +11,13 @@ import heroImg from "@/assets/hero-plant.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Pack-Wise — Pharmaceutical Packaging Consulting" },
+      { title: "Pharmaceutical Packaging Consulting | Pack-Wise" },
       {
         name: "description",
         content:
-          "We help pharmaceutical companies streamline packaging sourcing, ensure regulatory compliance, and optimize costs through a reliable global vendor network.",
+          "Pack-Wise provides pharmaceutical packaging consulting, regulatory compliance support, packaging sourcing, and cost optimization for global pharma companies.",
       },
+      { name: "keywords", content: "pharmaceutical packaging consulting, pharma packaging compliance, packaging sourcing consultant, packaging vendor management" },
     ],
   }),
   component: HomePage,

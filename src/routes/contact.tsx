@@ -8,16 +8,19 @@ import logoImg from "@/assets/logo-light.png";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact Pack-Wise — Executive Advisory" },
+      { title: "Contact Pack-Wise | Pharmaceutical Packaging Consulting" },
       {
         name: "description",
         content:
-          "Connect with a Pack-Wise executive advisor. Confidential review within 24 business hours.",
+          "Contact Pack-Wise for confidential pharmaceutical packaging consulting, regulatory compliance support, and packaging sourcing brief reviews within 24 business hours.",
       },
+      { name: "keywords", content: "pharmaceutical packaging consulting contact, pharma packaging compliance inquiry, packaging sourcing consultant contact" },
     ],
   }),
   component: ContactPage,
 });
+
+const web3FormsAccessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY ?? "";
 
 const schema = z.object({
   fullName: z.string().trim().min(2, "Full name required").max(100),
@@ -61,6 +64,11 @@ function ContactPage() {
     }
     
     setErrors({});
+    if (!web3FormsAccessKey) {
+      toast.error("Form is not configured yet. Add VITE_WEB3FORMS_ACCESS_KEY to the environment file.");
+      return;
+    }
+
     setLoading(true);
     
     try {
@@ -68,7 +76,7 @@ function ContactPage() {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
-          access_key: "YOUR_WEB3FORMS_ACCESS_KEY_HERE", // Replace with a free key from Web3Forms.com
+          access_key: web3FormsAccessKey,
           subject: `New Project Brief from ${form.company}`,
           from_name: form.fullName,
           email: form.email,

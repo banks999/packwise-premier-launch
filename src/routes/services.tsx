@@ -5,12 +5,13 @@ import { Layers, ShieldCheck, Network, PenLine, TrendingDown, ClipboardList, Arr
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Services — Core Packaging Capabilities | Pack-Wise" },
+      { title: "Pharmaceutical Packaging Services | Pack-Wise" },
       {
         name: "description",
         content:
-          "End-to-end pharmaceutical packaging consulting from strategy and compliance to vendor sourcing and cost optimization.",
+          "Explore Pack-Wise pharmaceutical packaging services including regulatory compliance, sourcing, artwork coordination, and cost optimization for global pharma brands.",
       },
+      { name: "keywords", content: "pharmaceutical packaging services, pharma packaging compliance, packaging sourcing, artwork and labeling compliance, packaging cost optimization" },
     ],
   }),
   component: ServicesPage,

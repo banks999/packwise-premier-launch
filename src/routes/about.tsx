@@ -5,12 +5,13 @@ import { ShieldCheck, Network, Wrench, Check } from "lucide-react";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About Pack-Wise — Founder & Leadership" },
+      { title: "About Pack-Wise | Pharmaceutical Packaging Consultant" },
       {
         name: "description",
         content:
-          "Meet Kundanraj Shah, Founder & CEO of Pack-Wise, with over 32 years of experience in the primary pharmaceutical packaging industry.",
+          "Meet Kundanraj Shah, Founder & CEO of Pack-Wise, with 32+ years of pharmaceutical packaging expertise, FDA and EU GMP experience, and global operational insight.",
       },
+      { name: "keywords", content: "pharmaceutical packaging consultant, pharma packaging expertise, FDA packaging compliance, EU GMP packaging support" },
     ],
   }),
   component: AboutPage,
