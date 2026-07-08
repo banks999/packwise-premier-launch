@@ -3,8 +3,7 @@ import logoImg from "@/assets/logo-light.png";
 
 export function Footer() {
   return (
-    <footer className="bg-navy-deep text-navy-foreground relative overflow-hidden">
-      <div className="absolute inset-0 hex-grid opacity-50 pointer-events-none" />
+    <footer className="bg-navy-deep text-navy-foreground relative">
       <div className="relative mx-auto max-w-7xl px-6 py-16">
         <div className="grid gap-12 md:grid-cols-[2fr_1fr_1fr_1.5fr]">
           <div>

@@ -16,30 +16,6 @@ export const Route = createFileRoute("/contact")({
       },
       { name: "keywords", content: "pharmaceutical packaging consulting contact, pharma packaging compliance inquiry, packaging sourcing consultant contact" },
     ],
-    links: [
-      { rel: "canonical", href: "https://pack-wise.com/contact" },
-    ],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "ContactPage",
-          mainEntity: {
-            "@type": "Organization",
-            name: "Pack-Wise",
-            url: "https://pack-wise.com/",
-            logo: "https://pack-wise.com/logo.png",
-            contactPoint: {
-              "@type": "ContactPoint",
-              contactType: "customer support",
-              telephone: "+1 640-203-0743",
-              email: "kundanshah73@gmail.com",
-            },
-          },
-        }),
-      },
-    ],
   }),
   component: ContactPage,
 });
@@ -135,7 +111,10 @@ function ContactPage() {
               <h1 className="mt-8 font-display text-3xl md:text-4xl font-semibold leading-tight">
                 Connect with an Executive Advisor.
               </h1>
-              <p className="mt-5 text-white/70 leading-relaxed">Confidential brief reviews within 24 business hours.</p>
+              <p className="mt-5 text-white/70 leading-relaxed">
+                We review all manufacturing and commercial briefs within 24
+                business hours under strict confidential evaluation.
+              </p>
 
               <div className="mt-12 space-y-6">
                 <InfoRow icon={<Phone size={18} />} label="USA" value="+1 640-203-0743" />
@@ -226,36 +205,5 @@ function ContactPage() {
         </div>
       </div>
     </section>
-  );
-}
-
-const inputCls = (hasError: boolean) =>
-  `w-full rounded-md border ${
-    hasError ? "border-destructive/60 bg-destructive/5 focus:ring-destructive/20" : "border-input bg-background focus:ring-navy/20"
-  } px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 outline-none transition-all focus:border-navy focus:ring-2`;
-
-function Field({ label, error, children }: { label: string; error?: string; children: React.ReactNode }) {
-  return (
-    <label className="block">
-      <div className="flex justify-between items-baseline">
-        <span className="text-xs font-semibold uppercase tracking-wider text-navy/70">{label}</span>
-        {error && <span className="text-xs font-medium text-destructive">{error}</span>}
-      </div>
-      <div className="mt-2">{children}</div>
-    </label>
-  );
-}
-
-function InfoRow({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
-  return (
-    <div className="flex items-start gap-4">
-      <span className="hex-clip flex h-10 w-11 shrink-0 items-center justify-center bg-bio/15 text-bio">
-        {icon}
-      </span>
-      <div>
-        <div className="text-xs font-semibold uppercase tracking-wider text-bio/80">{label}</div>
-        <div className="mt-1 text-white/90">{value}</div>
-      </div>
-    </div>
   );
 }

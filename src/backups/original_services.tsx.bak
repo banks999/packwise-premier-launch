@@ -13,9 +13,6 @@ export const Route = createFileRoute("/services")({
       },
       { name: "keywords", content: "pharmaceutical packaging services, pharma packaging compliance, packaging sourcing, artwork and labeling compliance, packaging cost optimization" },
     ],
-    links: [
-      { rel: "canonical", href: "https://pack-wise.com/services" },
-    ],
   }),
   component: ServicesPage,
 });
@@ -25,7 +22,7 @@ const services = [
     n: "01",
     icon: <Layers size={22} />,
     title: "Packaging Strategy & Development",
-    body: "Robust, market-ready packaging strategies from concept to format.",
+    body: "We translate complex product requirements into robust, market-ready packaging strategies.",
     bullets: [
       "Primary & secondary packaging design",
       "Material compatibility and stability guidance",
@@ -37,7 +34,7 @@ const services = [
     n: "02",
     icon: <ShieldCheck size={22} />,
     title: "Regulatory Compliance Support",
-    body: "Compliance support for FDA, EMA, and global markets.",
+    body: "Navigate global pharmaceutical regulations with confidence.",
     bullets: [
       "USFDA, EMA, and global market compliance",
       "Serialization and Track & Trace implementation",
@@ -49,7 +46,7 @@ const services = [
     n: "03",
     icon: <Network size={22} />,
     title: "Vendor Sourcing & Management",
-    body: "Pre-qualified supplier sourcing and qualification management.",
+    body: "Access our pre-qualified global network of premium packaging manufacturers.",
     bullets: [
       "Supplier identification and qualification",
       "Rigid plastics, glass, and flexible films",
@@ -61,7 +58,7 @@ const services = [
     n: "04",
     icon: <PenLine size={22} />,
     title: "Artwork & Design Coordination",
-    body: "Artwork lifecycle management for compliant brand expression.",
+    body: "Bridging marketing aesthetics with regulatory mandates.",
     bullets: [
       "Regulatory-compliant artwork creation",
       "Leaflets, IFUs, and Medication Guides",
@@ -73,7 +70,7 @@ const services = [
     n: "05",
     icon: <TrendingDown size={22} />,
     title: "Cost Optimization",
-    body: "Targeted packaging cost reductions without quality loss.",
+    body: "Reduce packaging expenses while maintaining quality.",
     bullets: [
       "Packaging spend and value analysis",
       "Material downgauging and right-sizing",
@@ -85,7 +82,7 @@ const services = [
     n: "06",
     icon: <ClipboardList size={22} />,
     title: "Project Management",
-    body: "Rapid, coordinated delivery from concept to launch.",
+    body: "Seamless execution from concept through commercialization.",
     bullets: [
       "Cross-functional team leadership",
       "Timeline and milestone tracking",
@@ -110,8 +107,7 @@ function ServicesPage() {
               <span className="text-bio">One operating standard.</span>
             </h1>
             <p className="mt-6 max-w-2xl text-white/70 text-lg leading-relaxed">
-              Pack-Wise engagements integrate strategic development, compliance, and supply
-              chain disciplines into a single, accountable mandate.
+              Pack-Wise integrates strategic development, compliance, and supply chain disciplines into a single, accountable mandate.
             </p>
           </div>
         </div>

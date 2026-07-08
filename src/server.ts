@@ -21,8 +21,18 @@ async function getServerEntry(): Promise<ServerEntry> {
 function brandedErrorResponse(): Response {
   return new Response(renderErrorPage(), {
     status: 500,
-    headers: { "content-type": "text/html; charset=utf-8" },
+    headers: applySecurityHeaders({ "content-type": "text/html; charset=utf-8" }),
   });
+}
+
+function applySecurityHeaders(headers: HeadersInit = {}): HeadersInit {
+  const baseHeaders = new Headers(headers);
+  baseHeaders.set("Content-Security-Policy", "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://api.web3forms.com https://fonts.googleapis.com https://fonts.gstatic.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com");
+  baseHeaders.set("X-Content-Type-Options", "nosniff");
+  baseHeaders.set("Referrer-Policy", "strict-origin-when-cross-origin");
+  baseHeaders.set("Permissions-Policy", "geolocation=(), microphone=(), camera=()");
+  baseHeaders.set("X-Frame-Options", "DENY");
+  return baseHeaders;
 }
 
 function isCatastrophicSsrErrorBody(body: string, responseStatus: number): boolean {
@@ -71,7 +81,12 @@ export default {
     try {
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
-      return await normalizeCatastrophicSsrResponse(response);
+      const normalizedResponse = await normalizeCatastrophicSsrResponse(response);
+      return new Response(normalizedResponse.body, {
+        status: normalizedResponse.status,
+        statusText: normalizedResponse.statusText,
+        headers: applySecurityHeaders(normalizedResponse.headers),
+      });
     } catch (error) {
       console.error(error);
       return brandedErrorResponse();
