@@ -81,6 +81,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "Pack-Wise delivers pharmaceutical packaging consulting, regulatory compliance support, packaging sourcing, and vendor management for global pharma companies.",
       },
+      { property: "og:image", content: "https://pack-wise.com/hero-plant.jpg" },
+      { name: "twitter:image", content: "https://pack-wise.com/hero-plant.jpg" },
       { property: "og:title", content: "Pack-Wise | Pharmaceutical Packaging Consulting & Compliance" },
       {
         property: "og:description",

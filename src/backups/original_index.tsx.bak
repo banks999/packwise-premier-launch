@@ -19,9 +19,6 @@ export const Route = createFileRoute("/")({
       },
       { name: "keywords", content: "pharmaceutical packaging consulting, pharma packaging compliance, packaging sourcing consultant, packaging vendor management" },
     ],
-    links: [
-      { rel: "canonical", href: "https://pack-wise.com/" },
-    ],
   }),
   component: HomePage,
 });
@@ -135,7 +132,8 @@ function HomePage() {
               <span className="text-bio">Compliance & Efficiency.</span>
             </h1>
             <p className="mt-7 max-w-2xl text-base md:text-lg text-white/70 leading-relaxed">
-              Practical packaging consulting: compliance, sourcing, and cost reduction.
+              We help pharmaceutical companies streamline packaging sourcing, ensure regulatory compliance,
+              and optimize costs through a reliable global vendor network.
             </p>
             <div className="mt-10">
               <Link
@@ -158,17 +156,19 @@ function HomePage() {
         </div>
       </section>
 
-      {/* 2. Corporate Overview (condensed) */}
+      {/* 2. Corporate Overview */}
       <section className="mx-auto max-w-5xl px-6 py-24 md:py-32">
         <SectionHeader
           eyebrow="Who We Are"
           title="A specialized consultancy built for pharmaceutical packaging excellence."
         />
-        <ul className="mt-8 space-y-4 text-base md:text-lg text-foreground/80 leading-relaxed list-disc pl-5">
-          <li>Regulatory-first packaging consulting for global markets.</li>
-          <li>End-to-end sourcing and vendor management.</li>
-          <li>Practical cost and timeline optimization for product launches.</li>
-        </ul>
+        <p className="mt-8 text-base md:text-lg text-foreground/80 leading-relaxed">
+          Pack-Wise is a specialized consultancy dedicated to supporting pharmaceutical companies in developing,
+          optimizing, and delivering high-quality packaging solutions that meet global regulatory standards.
+          With a deep understanding of the pharmaceutical industry, we bridge the gap between compliance,
+          functionality, and brand excellence. Our goal is to help our clients navigate the complexities of
+          pharmaceutical packaging while ensuring efficiency, cost-effectiveness, and market readiness.
+        </p>
       </section>
 
       {/* 3. Core Consulting Services */}

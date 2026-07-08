@@ -79,6 +79,14 @@
     -webkit-font-smoothing: antialiased;
   }
   h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; }
+
+  /* Make navigational links highlight in brand yellow on hover */
+  a[href] {
+    transition: color 160ms ease-in-out;
+  }
+  a[href]:hover {
+    color: var(--color-bio) !important;
+  }
 }
 
 @utility hex-grid {
