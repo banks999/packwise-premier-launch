@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import logoImg from "@/assets/logo.png";
 
 const links = [
   { to: "/", label: "Home" },
@@ -31,7 +32,7 @@ export function Navbar() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <Link to="/" className="group">
           <img
-            src="/src/assets/logo.png"
+            src={logoImg}
             alt="Pack-Wise"
             className="h-10 w-auto"
           />
