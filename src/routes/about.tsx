@@ -122,7 +122,7 @@ function AboutPage() {
               </div>
             </div>
             <div className="mt-5 space-y-1">
-              <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Founder & CEO</div>
+              <div className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">Founder & CEO</div>
               <h3 className="font-display text-xl font-semibold text-navy">Kundanraj Shah</h3>
               <p className="text-sm text-muted-foreground">Pack-Wise Consulting</p>
             </div>
@@ -197,7 +197,7 @@ function AboutPage() {
             </blockquote>
             {/* decorative quotes removed */}
           </div>
-          <p className="mt-16 text-sm font-semibold uppercase tracking-[0.18em] text-white/50">
+          <p className="mt-16 text-xs font-semibold uppercase tracking-[0.18em] text-white/50">
             — Kundanraj Shah, Founder & CEO, Pack-Wise
           </p>
         </div>

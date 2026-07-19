@@ -238,7 +238,7 @@ function Field({ label, error, children }: { label: string; error?: string; chil
   return (
     <label className="block">
       <div className="flex justify-between items-baseline">
-        <span className="text-xs font-semibold uppercase tracking-wider text-navy/70">{label}</span>
+        <span className="text-xs font-semibold uppercase tracking-[0.18em] text-navy/70">{label}</span>
         {error && <span className="text-xs font-medium text-destructive">{error}</span>}
       </div>
       <div className="mt-2">{children}</div>
@@ -253,7 +253,7 @@ function InfoRow({ icon, label, value }: { icon: React.ReactNode; label: string;
         {icon}
       </span>
       <div>
-        <div className="text-xs font-semibold uppercase tracking-wider text-bio/80">{label}</div>
+        <div className="text-xs font-semibold uppercase tracking-[0.18em] text-bio/80">{label}</div>
         <div className="mt-1 text-white/90">{value}</div>
       </div>
     </div>

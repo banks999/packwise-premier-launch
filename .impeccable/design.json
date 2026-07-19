@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-14T00:00:00.000Z",
+  "title": "Design System: Pack-Wise",
+  "extensions": {
+    "colorMeta": {
+      "navy": { "role": "primary", "displayName": "Navy", "canonical": "oklch(0.27 0.05 260)", "tonalRamp": ["oklch(0.15 0.03 260)", "oklch(0.21 0.04 260)", "oklch(0.27 0.05 260)", "oklch(0.35 0.05 260)", "oklch(0.45 0.05 260)", "oklch(0.6 0.04 260)", "oklch(0.78 0.02 260)", "oklch(0.92 0.01 260)"] },
+      "navy-deep": { "role": "primary-deep", "displayName": "Midnight Navy", "canonical": "oklch(0.21 0.04 260)", "tonalRamp": ["oklch(0.12 0.02 260)", "oklch(0.16 0.03 260)", "oklch(0.21 0.04 260)", "oklch(0.28 0.04 260)", "oklch(0.4 0.04 260)", "oklch(0.55 0.03 260)", "oklch(0.75 0.02 260)", "oklch(0.9 0.01 260)"] },
+      "bio-yellow": { "role": "secondary", "displayName": "Bio Yellow", "canonical": "oklch(0.96 0.12 105)", "tonalRamp": ["oklch(0.55 0.09 105)", "oklch(0.65 0.1 105)", "oklch(0.75 0.11 105)", "oklch(0.83 0.12 105)", "oklch(0.9 0.12 105)", "oklch(0.96 0.12 105)", "oklch(0.98 0.08 105)", "oklch(0.99 0.03 105)"] },
+      "neutral-canvas": { "role": "neutral", "displayName": "Cool Slate Canvas", "canonical": "oklch(0.984 0.003 247)", "tonalRamp": ["oklch(0.2 0.01 247)", "oklch(0.35 0.01 247)", "oklch(0.5 0.02 247)", "oklch(0.65 0.015 247)", "oklch(0.8 0.01 247)", "oklch(0.9 0.007 247)", "oklch(0.95 0.005 247)", "oklch(0.984 0.003 247)"] },
+      "neutral-bg": { "role": "neutral", "displayName": "Paper White", "canonical": "oklch(1 0 0)", "tonalRamp": ["oklch(0.2 0 0)", "oklch(0.35 0 0)", "oklch(0.5 0 0)", "oklch(0.65 0 0)", "oklch(0.8 0 0)", "oklch(0.9 0 0)", "oklch(0.96 0 0)", "oklch(1 0 0)"] },
+      "neutral-ink": { "role": "neutral", "displayName": "Ink", "canonical": "oklch(0.21 0.04 260)", "tonalRamp": ["oklch(0.1 0.02 260)", "oklch(0.15 0.03 260)", "oklch(0.21 0.04 260)", "oklch(0.3 0.04 260)", "oklch(0.45 0.03 260)", "oklch(0.6 0.03 260)", "oklch(0.78 0.02 260)", "oklch(0.92 0.01 260)"] },
+      "neutral-muted": { "role": "neutral", "displayName": "Muted Slate", "canonical": "oklch(0.45 0.03 257)", "tonalRamp": ["oklch(0.15 0.02 257)", "oklch(0.25 0.02 257)", "oklch(0.35 0.03 257)", "oklch(0.45 0.03 257)", "oklch(0.58 0.025 257)", "oklch(0.72 0.02 257)", "oklch(0.85 0.015 257)", "oklch(0.95 0.007 257)"] },
+      "neutral-border": { "role": "neutral", "displayName": "Hairline Border", "canonical": "oklch(0.92 0.013 255)", "tonalRamp": ["oklch(0.3 0.02 255)", "oklch(0.45 0.02 255)", "oklch(0.6 0.015 255)", "oklch(0.75 0.013 255)", "oklch(0.85 0.013 255)", "oklch(0.92 0.013 255)", "oklch(0.96 0.008 255)", "oklch(0.99 0.003 255)"] },
+      "destructive": { "role": "destructive", "displayName": "Alert Red", "canonical": "oklch(0.577 0.245 27.325)", "tonalRamp": ["oklch(0.25 0.15 27.3)", "oklch(0.35 0.19 27.3)", "oklch(0.45 0.22 27.3)", "oklch(0.577 0.245 27.325)", "oklch(0.68 0.2 27.3)", "oklch(0.78 0.15 27.3)", "oklch(0.88 0.09 27.3)", "oklch(0.95 0.04 27.3)"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero H1s only, always paired with one bio-yellow phrase." },
+      "headline": { "displayName": "Headline", "purpose": "Section-level H2s via SectionHeader." },
+      "title": { "displayName": "Title", "purpose": "Card and sub-section H3s." },
+      "body": { "displayName": "Body", "purpose": "Paragraph copy, 65-75ch measure." },
+      "label": { "displayName": "Label", "purpose": "Eyebrows, form field labels, info-row labels." }
+    },
+    "shadows": [
+      { "name": "card-hover", "value": "hover:shadow-lg hover:shadow-navy/5", "purpose": "Barely-there navy-tinted lift on service/expertise/differentiator cards, hover only." },
+      { "name": "cta-hover", "value": "hover:shadow-xl hover:shadow-bio/20 to /30", "purpose": "Bio-yellow glow under the primary button on hover." }
+    ],
+    "motion": [
+      { "name": "color-transition", "value": "transition-colors 160ms ease-in-out", "purpose": "Link and nav color state changes." },
+      { "name": "all-transition", "value": "transition-all duration-300", "purpose": "Card hover, navbar scroll-state, CTA hover." },
+      { "name": "marquee", "value": "45s linear infinite", "purpose": "Trusted-by logo marquee; disabled via motion-reduce:animate-none." }
+    ],
+    "breakpoints": [
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Bio-yellow CTA button, navy text. Used for 'Schedule a Consultation' throughout the site.",
+      "html": "<a href=\"#\" class=\"ds-btn-primary\">Schedule a Consultation</a>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: #FFF493; color: #1A263E; font-size: 14px; font-weight: 600; padding: 16px 28px; border-radius: 6px; border: none; transition: background 0.2s, box-shadow 0.2s; } .ds-btn-primary:hover { background: rgba(255,244,147,0.9); box-shadow: 0 20px 40px -15px rgba(255,244,147,0.3); } .ds-btn-primary:focus-visible { outline: 2px solid #1A263E; outline-offset: 2px; }"
+    },
+    {
+      "name": "Hex Icon Badge",
+      "kind": "custom",
+      "refersTo": "icon-badge",
+      "description": "Signature hexagonal icon container used for every service/expertise/differentiator/info-row icon.",
+      "html": "<span class=\"ds-hex-badge\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M12 2l8 4.5v9L12 20l-8-4.5v-9z\"/></svg></span>",
+      "css": ".ds-hex-badge { display: inline-flex; align-items: center; justify-content: center; height: 40px; width: 44px; background: #1A263E; color: #FFF493; clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%); }"
+    },
+    {
+      "name": "Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Standard content card: flat at rest, navy-tinted lift on hover.",
+      "html": "<div class=\"ds-card\"><span class=\"ds-hex-badge\"></span><h3 class=\"ds-card-title\">Card Title</h3><p class=\"ds-card-body\">Supporting description text.</p></div>",
+      "css": ".ds-card { border-radius: 12px; border: 1px solid #E2E8F0; background: #FFFFFF; padding: 28px; transition: border-color 0.3s, box-shadow 0.3s; } .ds-card:hover { border-color: rgba(26,38,62,0.4); box-shadow: 0 10px 30px -12px rgba(26,38,62,0.05); } .ds-card-title { margin-top: 20px; font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 600; color: #1A263E; } .ds-card-body { margin-top: 12px; font-size: 14px; color: #64748B; line-height: 1.6; }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Form field with label above, navy focus ring, red error state.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">Full Name</span><input class=\"ds-input\" placeholder=\"Dr. Jane Doe\" /></label>",
+      "css": ".ds-field-label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.18em; color: rgba(26,38,62,0.7); } .ds-input { display: block; width: 100%; margin-top: 8px; border-radius: 6px; border: 1px solid #E2E8F0; background: #FFFFFF; padding: 12px 16px; font-size: 14px; color: #0F172A; outline: none; transition: border-color 0.2s, box-shadow 0.2s; } .ds-input:focus { border-color: #1A263E; box-shadow: 0 0 0 2px rgba(26,38,62,0.2); }"
+    },
+    {
+      "name": "Navigation Bar",
+      "kind": "nav",
+      "refersTo": "navbar",
+      "description": "Fixed header, blurred glass background, strengthens on scroll; navy active link state.",
+      "html": "<header class=\"ds-navbar\"><nav class=\"ds-nav-links\"><a href=\"#\" class=\"ds-nav-link ds-nav-link-active\">Home</a><a href=\"#\" class=\"ds-nav-link\">About Us</a><a href=\"#\" class=\"ds-nav-link\">Services</a></nav><a href=\"#\" class=\"ds-btn-primary\">Schedule a Consultation</a></header>",
+      "css": ".ds-navbar { display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; backdrop-filter: blur(12px); background: rgba(255,255,255,0.4); } .ds-nav-links { display: flex; align-items: center; gap: 36px; } .ds-nav-link { font-size: 14px; font-weight: 500; color: rgba(15,23,42,0.7); transition: color 0.16s; } .ds-nav-link:hover, .ds-nav-link-active { color: #1A263E; font-weight: 600; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Compliance Blueprint",
+    "overview": "Pack-Wise reads as an engineering-grade document, not a marketing brochure: deep navy carries the authority of a controlled drawing, bio-yellow marks the places that matter, and the hex-grid pattern behind dark sections stands in for the molecular, regulatory precision the firm sells. The system is confident and specific rather than warm-and-fuzzy; every surface should feel like it belongs to a firm that has actually done this before, at scale, under real regulatory pressure. It explicitly rejects the generic, templated consulting-agency look — stock-photo warmth, interchangeable icon-grid sections, and decoration standing in for substance.",
+    "keyCharacteristics": [
+      "Navy-and-bio-yellow as a controlled two-color system; no incidental third hues beyond functional neutrals and a destructive red.",
+      "Hex-clip badges and hex-grid texture as the one recurring signature motif, used consistently rather than varied.",
+      "Flat surfaces at rest; color-tinted glow shadows appear only as a hover response, never as baseline elevation.",
+      "Eyebrow labels + section headers follow one repeatable rhythm across every page."
+    ],
+    "rules": [
+      { "name": "The Two-Color Rule", "body": "The brand vocabulary is navy + bio-yellow, full stop. Any new color proposal must justify itself against these two before being added.", "section": "colors" },
+      { "name": "The Earned Yellow Rule", "body": "Bio-yellow marks importance, not decoration. If yellow appears more than once per section, or as a large background fill, it has stopped meaning 'pay attention here.'", "section": "colors" },
+      { "name": "The One Eyebrow Rule", "body": "Uppercase tracked labels are reserved for the section-eyebrow and field-label roles only.", "section": "typography" },
+      { "name": "The Flat-By-Default Rule", "body": "No surface has a resting shadow. Shadows are reserved entirely for hover/interaction feedback, always brand-tinted, never neutral gray.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep the brand vocabulary to exactly two colors (navy + bio-yellow) plus cool neutrals and the single destructive red.",
+      "Do reserve bio-yellow for the one thing per section that should be noticed.",
+      "Do keep every design decision reading as operationally specific and precise rather than generic.",
+      "Do use the hex-clip badge as the single recurring icon-container shape.",
+      "Do keep every page converging on the single 'Schedule a Consultation' CTA."
+    ],
+    "donts": [
+      "Don't ship the generic, templated consulting-agency look — stock-photo warmth, interchangeable icon-grid sections, decoration standing in for substance.",
+      "Don't add a resting/baseline shadow to any card, input, or button.",
+      "Don't round corners past rounded-2xl (16px) anywhere, and never use a soft/bubbly radius on buttons.",
+      "Don't introduce a second small-caps/tracked-uppercase treatment beyond the eyebrow/label role.",
+      "Don't add a secondary CTA alongside 'Schedule a Consultation' without a deliberate strategy change."
+    ]
+  }
+}

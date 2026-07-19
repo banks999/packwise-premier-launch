@@ -26,13 +26,13 @@ export function Footer() {
           ]} />
 
           <div>
-            <h4 className="font-display text-sm font-semibold tracking-wide uppercase text-bio/90">
+            <h4 className="text-xs font-semibold tracking-[0.18em] uppercase text-bio/90">
               Headquarters
             </h4>
             <p className="mt-4 text-sm text-white/60 leading-relaxed">
               kundanshah73@gmail.com<br />
-              🇺🇸 +1 640-203-0743<br />
-              🇮🇳 +91 9820 924862
+              USA: +1 640-203-0743<br />
+              India: +91 9820 924862
             </p>
           </div>
         </div>
@@ -53,7 +53,7 @@ export function Footer() {
 function FooterCol({ title, items }: { title: string; items: { label: string; to: string }[] }) {
   return (
     <div>
-      <h4 className="font-display text-sm font-semibold tracking-wide uppercase text-bio/90">{title}</h4>
+      <h4 className="text-xs font-semibold tracking-[0.18em] uppercase text-bio/90">{title}</h4>
       <ul className="mt-4 space-y-2.5">
         {items.map((i) => (
           <li key={i.label}>
