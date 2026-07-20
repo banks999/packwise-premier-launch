@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { toast } from "sonner";
 import { z } from "zod";
-import { Mail, MapPin, ShieldCheck, Loader2, Phone } from "lucide-react";
+import { Mail, Loader2, Phone } from "lucide-react";
 import logoImg from "@/assets/logo-light.webp";
 
 export const Route = createFileRoute("/contact")({
@@ -49,7 +49,7 @@ export const Route = createFileRoute("/contact")({
               "@type": "ContactPoint",
               contactType: "customer support",
               telephone: "+1 640-203-0743",
-              email: "kundanshah73@gmail.com",
+              email: "info@pack-wise.in",
             },
           },
         }),
@@ -172,13 +172,8 @@ function ContactPage() {
                 <InfoRow
                   icon={<Mail size={18} />}
                   label="Email"
-                  value="kundanshah73@gmail.com"
-                  href="mailto:kundanshah73@gmail.com"
-                />
-                <InfoRow
-                  icon={<ShieldCheck size={18} />}
-                  label="Confidentiality"
-                  value="NDA available on request"
+                  value="info@pack-wise.in"
+                  href="mailto:info@pack-wise.in"
                 />
               </div>
             </div>

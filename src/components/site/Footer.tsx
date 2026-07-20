@@ -36,8 +36,8 @@ export function Footer() {
               Headquarters
             </h4>
             <p className="mt-4 text-sm text-white/60 leading-relaxed">
-              <a href="mailto:kundanshah73@gmail.com" className="hover:text-bio transition-colors">
-                kundanshah73@gmail.com
+              <a href="mailto:info@pack-wise.in" className="hover:text-bio transition-colors">
+                info@pack-wise.in
               </a>
               <br />
               USA:{" "}
