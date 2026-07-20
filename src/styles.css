@@ -42,12 +42,12 @@
   --radius: 0.5rem;
 
   /* Brand */
-  --navy: oklch(0.27 0.05 260);              /* #1A263E */
-  --navy-deep: oklch(0.21 0.04 260);         /* #0F172A */
+  --navy: oklch(0.27 0.05 260); /* #1A263E */
+  --navy-deep: oklch(0.21 0.04 260); /* #0F172A */
   --navy-foreground: oklch(0.985 0 0);
-  --bio: oklch(0.96 0.12 105);               /* #FFF493 */
+  --bio: oklch(0.96 0.12 105); /* #FFF493 */
   --bio-foreground: oklch(0.21 0.04 260);
-  --slate-canvas: oklch(0.984 0.003 247);    /* #F8FAFC */
+  --slate-canvas: oklch(0.984 0.003 247); /* #F8FAFC */
 
   --background: oklch(1 0 0);
   --foreground: oklch(0.21 0.04 260);
@@ -71,14 +71,22 @@
 }
 
 @layer base {
-  * { border-color: var(--color-border); }
+  * {
+    border-color: var(--color-border);
+  }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
   }
-  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
 
   /* Make navigational links highlight in brand yellow on hover */
   a[href] {
@@ -92,12 +100,44 @@
 @utility hex-grid {
   background-color: transparent;
   background-image:
-    linear-gradient(30deg, color-mix(in oklch, var(--color-bio) 6%, transparent) 12%, transparent 12.5%, transparent 87%, color-mix(in oklch, var(--color-bio) 6%, transparent) 87.5%, color-mix(in oklch, var(--color-bio) 6%, transparent)),
-    linear-gradient(150deg, color-mix(in oklch, var(--color-bio) 6%, transparent) 12%, transparent 12.5%, transparent 87%, color-mix(in oklch, var(--color-bio) 6%, transparent) 87.5%, color-mix(in oklch, var(--color-bio) 6%, transparent)),
-    linear-gradient(30deg, color-mix(in oklch, var(--color-bio) 6%, transparent) 12%, transparent 12.5%, transparent 87%, color-mix(in oklch, var(--color-bio) 6%, transparent) 87.5%, color-mix(in oklch, var(--color-bio) 6%, transparent)),
-    linear-gradient(150deg, color-mix(in oklch, var(--color-bio) 6%, transparent) 12%, transparent 12.5%, transparent 87%, color-mix(in oklch, var(--color-bio) 6%, transparent) 87.5%, color-mix(in oklch, var(--color-bio) 6%, transparent));
+    linear-gradient(
+      30deg,
+      color-mix(in oklch, var(--color-bio) 6%, transparent) 12%,
+      transparent 12.5%,
+      transparent 87%,
+      color-mix(in oklch, var(--color-bio) 6%, transparent) 87.5%,
+      color-mix(in oklch, var(--color-bio) 6%, transparent)
+    ),
+    linear-gradient(
+      150deg,
+      color-mix(in oklch, var(--color-bio) 6%, transparent) 12%,
+      transparent 12.5%,
+      transparent 87%,
+      color-mix(in oklch, var(--color-bio) 6%, transparent) 87.5%,
+      color-mix(in oklch, var(--color-bio) 6%, transparent)
+    ),
+    linear-gradient(
+      30deg,
+      color-mix(in oklch, var(--color-bio) 6%, transparent) 12%,
+      transparent 12.5%,
+      transparent 87%,
+      color-mix(in oklch, var(--color-bio) 6%, transparent) 87.5%,
+      color-mix(in oklch, var(--color-bio) 6%, transparent)
+    ),
+    linear-gradient(
+      150deg,
+      color-mix(in oklch, var(--color-bio) 6%, transparent) 12%,
+      transparent 12.5%,
+      transparent 87%,
+      color-mix(in oklch, var(--color-bio) 6%, transparent) 87.5%,
+      color-mix(in oklch, var(--color-bio) 6%, transparent)
+    );
   background-size: 56px 98px;
-  background-position: 0 0, 0 0, 28px 49px, 28px 49px;
+  background-position:
+    0 0,
+    0 0,
+    28px 49px,
+    28px 49px;
 }
 
 @utility hex-clip {
@@ -105,8 +145,12 @@
 }
 
 @keyframes marquee-right {
-  from { transform: translateX(-50%); }
-  to { transform: translateX(0); }
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
 
 @utility animate-marquee-right {

@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import logoImg from "@/assets/logo.webp";
 
 const links = [
   { to: "/", label: "Home" },
@@ -24,17 +25,13 @@ export function Navbar() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "backdrop-blur-xl bg-background/70 border-b border-border/60"
-          : "backdrop-blur-md bg-background/40"
+          ? "backdrop-blur-xl bg-background/95 border-b border-border/60"
+          : "backdrop-blur-md bg-background/85"
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <Link to="/" className="group">
-          <img
-            src="/src/assets/logo.png"
-            alt="Pack-Wise"
-            className="h-10 w-auto"
-          />
+          <img src={logoImg} alt="Pack-Wise" className="h-10 w-auto" />
         </Link>
 
         <nav className="hidden md:flex items-center gap-9">
@@ -43,7 +40,7 @@ export function Navbar() {
               key={l.to}
               to={l.to}
               activeOptions={{ exact: l.to === "/" }}
-              className="text-sm font-medium text-foreground/70 hover:text-navy transition-colors data-[status=active]:text-navy data-[status=active]:font-semibold"
+              className="text-sm font-medium text-foreground/80 hover:text-navy transition-colors data-[status=active]:text-navy data-[status=active]:font-semibold"
             >
               {l.label}
             </Link>
@@ -63,13 +60,18 @@ export function Navbar() {
           onClick={() => setOpen(!open)}
           className="md:hidden p-2 text-navy"
           aria-label="Menu"
+          aria-expanded={open}
+          aria-controls="mobile-menu"
         >
           {open ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
       {open && (
-        <div className="md:hidden border-t border-border bg-background/95 backdrop-blur-xl px-6 py-4 space-y-3">
+        <div
+          id="mobile-menu"
+          className="md:hidden border-t border-border bg-background/95 backdrop-blur-xl px-6 py-4 space-y-3"
+        >
           {links.map((l) => (
             <Link
               key={l.to}

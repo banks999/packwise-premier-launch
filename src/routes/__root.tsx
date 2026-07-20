@@ -74,7 +74,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "robots", content: "index, follow" },
-      { name: "keywords", content: "pharmaceutical packaging consulting, pharma packaging compliance, packaging sourcing consultant, packaging vendor management, FDA and EU GMP packaging support" },
+      {
+        name: "keywords",
+        content:
+          "pharmaceutical packaging consulting, pharma packaging compliance, packaging sourcing consultant, packaging vendor management, FDA and EU GMP packaging support",
+      },
       { title: "Pack-Wise | Pharmaceutical Packaging Consulting & Compliance" },
       {
         name: "description",
@@ -83,7 +87,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:image", content: "https://pack-wise.com/hero-plant.jpg" },
       { name: "twitter:image", content: "https://pack-wise.com/hero-plant.jpg" },
-      { property: "og:title", content: "Pack-Wise | Pharmaceutical Packaging Consulting & Compliance" },
+      {
+        property: "og:title",
+        content: "Pack-Wise | Pharmaceutical Packaging Consulting & Compliance",
+      },
       {
         property: "og:description",
         content:
@@ -92,7 +99,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Pack-Wise" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Pack-Wise | Pharmaceutical Packaging Consulting & Compliance" },
+      {
+        name: "twitter:title",
+        content: "Pack-Wise | Pharmaceutical Packaging Consulting & Compliance",
+      },
       {
         name: "twitter:description",
         content:
@@ -101,6 +111,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "canonical", href: "https://pack-wise.com/" },
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+      { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon.png" },
+      { rel: "icon", type: "image/png", sizes: "192x192", href: "/icon-192.png" },
+      { rel: "icon", type: "image/png", sizes: "512x512", href: "/icon-512.png" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
