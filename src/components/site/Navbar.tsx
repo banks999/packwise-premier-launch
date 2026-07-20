@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import logoImg from "@/assets/logo.png";
+import logoImg from "@/assets/logo.webp";
 
 const links = [
   { to: "/", label: "Home" },
@@ -31,11 +31,7 @@ export function Navbar() {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <Link to="/" className="group">
-          <img
-            src={logoImg}
-            alt="Pack-Wise"
-            className="h-10 w-auto"
-          />
+          <img src={logoImg} alt="Pack-Wise" className="h-10 w-auto" />
         </Link>
 
         <nav className="hidden md:flex items-center gap-9">
@@ -72,7 +68,10 @@ export function Navbar() {
       </div>
 
       {open && (
-        <div id="mobile-menu" className="md:hidden border-t border-border bg-background/95 backdrop-blur-xl px-6 py-4 space-y-3">
+        <div
+          id="mobile-menu"
+          className="md:hidden border-t border-border bg-background/95 backdrop-blur-xl px-6 py-4 space-y-3"
+        >
           {links.map((l) => (
             <Link
               key={l.to}

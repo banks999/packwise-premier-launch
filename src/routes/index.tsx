@@ -1,12 +1,24 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
-  ArrowRight, ShieldCheck, Globe2, Network, Layers, PenLine,
-  TrendingDown, ClipboardList, Package, FileText, Tag, Lock,
-  Target, Sliders, Zap,
+  ArrowRight,
+  ShieldCheck,
+  Globe2,
+  Network,
+  Layers,
+  PenLine,
+  TrendingDown,
+  ClipboardList,
+  Package,
+  FileText,
+  Tag,
+  Lock,
+  Target,
+  Sliders,
+  Zap,
 } from "lucide-react";
 import { SectionHeader } from "@/components/site/SectionHeader";
 import { TrustedByMarquee } from "@/components/site/TrustedByMarquee";
-import heroImg from "@/assets/hero-plant.jpg";
+import heroImg from "@/assets/hero-plant.webp";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -17,11 +29,26 @@ export const Route = createFileRoute("/")({
         content:
           "Pack-Wise provides pharmaceutical packaging consulting, regulatory compliance support, packaging sourcing, and cost optimization for global pharma companies.",
       },
-      { name: "keywords", content: "pharmaceutical packaging consulting, pharma packaging compliance, packaging sourcing consultant, packaging vendor management" },
+      {
+        name: "keywords",
+        content:
+          "pharmaceutical packaging consulting, pharma packaging compliance, packaging sourcing consultant, packaging vendor management",
+      },
+      { property: "og:title", content: "Pharmaceutical Packaging Consulting | Pack-Wise" },
+      {
+        property: "og:description",
+        content:
+          "Pack-Wise provides pharmaceutical packaging consulting, regulatory compliance support, packaging sourcing, and cost optimization for global pharma companies.",
+      },
+      { property: "og:url", content: "https://pack-wise.com/" },
+      { name: "twitter:title", content: "Pharmaceutical Packaging Consulting | Pack-Wise" },
+      {
+        name: "twitter:description",
+        content:
+          "Pack-Wise provides pharmaceutical packaging consulting, regulatory compliance support, packaging sourcing, and cost optimization for global pharma companies.",
+      },
     ],
-    links: [
-      { rel: "canonical", href: "https://pack-wise.com/" },
-    ],
+    links: [{ rel: "canonical", href: "https://pack-wise.com/" }],
   }),
   component: HomePage,
 });
@@ -143,7 +170,10 @@ function HomePage() {
                 className="group inline-flex items-center gap-2 rounded-md bg-bio px-7 py-4 text-sm font-semibold text-navy hover:bg-bio/90 hover:shadow-xl hover:shadow-bio/20 transition-all"
               >
                 Schedule a Consultation
-                <ArrowRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
+                <ArrowRight
+                  size={16}
+                  className="group-hover:translate-x-0.5 transition-transform"
+                />
               </Link>
             </div>
           </div>
@@ -244,8 +274,14 @@ function HomePage() {
 }
 
 function ServiceCard({
-  icon, title, body,
-}: { icon: React.ReactNode; title: string; body: string }) {
+  icon,
+  title,
+  body,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  body: string;
+}) {
   return (
     <div className="rounded-xl border border-border bg-card p-7 hover:border-navy/40 hover:shadow-lg hover:shadow-navy/5 transition-all duration-300">
       <span className="hex-clip flex h-10 w-11 items-center justify-center bg-navy text-bio">
@@ -258,8 +294,14 @@ function ServiceCard({
 }
 
 function ExpertiseCard({
-  icon, title, body,
-}: { icon: React.ReactNode; title: string; body: string }) {
+  icon,
+  title,
+  body,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  body: string;
+}) {
   return (
     <div className="rounded-xl border border-border bg-card p-7 hover:border-navy/40 hover:shadow-lg hover:shadow-navy/5 transition-all duration-300">
       <span className="hex-clip flex h-10 w-11 items-center justify-center bg-navy text-bio">
@@ -272,8 +314,14 @@ function ExpertiseCard({
 }
 
 function DifferentiatorRow({
-  icon, title, body,
-}: { icon: React.ReactNode; title: string; body: string }) {
+  icon,
+  title,
+  body,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  body: string;
+}) {
   return (
     <div className="flex items-start gap-6 py-6">
       <span className="hex-clip flex h-11 w-12 shrink-0 items-center justify-center bg-bio text-navy">

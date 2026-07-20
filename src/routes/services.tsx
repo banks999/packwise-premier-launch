@@ -1,6 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SectionHeader } from "@/components/site/SectionHeader";
-import { Layers, ShieldCheck, Network, PenLine, TrendingDown, ClipboardList, ArrowRight, Check } from "lucide-react";
+import {
+  Layers,
+  ShieldCheck,
+  Network,
+  PenLine,
+  TrendingDown,
+  ClipboardList,
+  ArrowRight,
+  Check,
+} from "lucide-react";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -11,11 +20,26 @@ export const Route = createFileRoute("/services")({
         content:
           "Explore Pack-Wise pharmaceutical packaging services including regulatory compliance, sourcing, artwork coordination, and cost optimization for global pharma brands.",
       },
-      { name: "keywords", content: "pharmaceutical packaging services, pharma packaging compliance, packaging sourcing, artwork and labeling compliance, packaging cost optimization" },
+      {
+        name: "keywords",
+        content:
+          "pharmaceutical packaging services, pharma packaging compliance, packaging sourcing, artwork and labeling compliance, packaging cost optimization",
+      },
+      { property: "og:title", content: "Pharmaceutical Packaging Services | Pack-Wise" },
+      {
+        property: "og:description",
+        content:
+          "Explore Pack-Wise pharmaceutical packaging services including regulatory compliance, sourcing, artwork coordination, and cost optimization for global pharma brands.",
+      },
+      { property: "og:url", content: "https://pack-wise.com/services" },
+      { name: "twitter:title", content: "Pharmaceutical Packaging Services | Pack-Wise" },
+      {
+        name: "twitter:description",
+        content:
+          "Explore Pack-Wise pharmaceutical packaging services including regulatory compliance, sourcing, artwork coordination, and cost optimization for global pharma brands.",
+      },
     ],
-    links: [
-      { rel: "canonical", href: "https://pack-wise.com/services" },
-    ],
+    links: [{ rel: "canonical", href: "https://pack-wise.com/services" }],
   }),
   component: ServicesPage,
 });
@@ -30,7 +54,7 @@ const services = [
       "Primary & secondary packaging design",
       "Material compatibility and stability guidance",
       "Sustainable packaging alternatives",
-      "Format optimization for manufacturing"
+      "Format optimization for manufacturing",
     ],
   },
   {
@@ -42,7 +66,7 @@ const services = [
       "USFDA, EMA, and global market compliance",
       "Serialization and Track & Trace implementation",
       "Child-resistant and senior-friendly formats",
-      "Tamper-evident packaging solutions"
+      "Tamper-evident packaging solutions",
     ],
   },
   {
@@ -54,7 +78,7 @@ const services = [
       "Supplier identification and qualification",
       "Rigid plastics, glass, and flexible films",
       "Quality audits and corrective action (CAPA)",
-      "Contract negotiation and terms"
+      "Contract negotiation and terms",
     ],
   },
   {
@@ -66,7 +90,7 @@ const services = [
       "Regulatory-compliant artwork creation",
       "Leaflets, IFUs, and Medication Guides",
       "Labeling control and version management",
-      "Print proofing and color consistency"
+      "Print proofing and color consistency",
     ],
   },
   {
@@ -78,7 +102,7 @@ const services = [
       "Packaging spend and value analysis",
       "Material downgauging and right-sizing",
       "Supply base consolidation",
-      "Logistics and palletization efficiency"
+      "Logistics and palletization efficiency",
     ],
   },
   {
@@ -90,7 +114,7 @@ const services = [
       "Cross-functional team leadership",
       "Timeline and milestone tracking",
       "Risk identification and mitigation",
-      "Launch readiness and commercial rollout"
+      "Launch readiness and commercial rollout",
     ],
   },
 ];
@@ -106,12 +130,11 @@ function ServicesPage() {
               Our Capabilities
             </span>
             <h1 className="mt-4 font-display text-4xl md:text-6xl font-semibold leading-[1.05]">
-              Six core practices.{" "}
-              <span className="text-bio">One operating standard.</span>
+              Six core practices. <span className="text-bio">One operating standard.</span>
             </h1>
             <p className="mt-6 max-w-2xl text-white/70 text-lg leading-relaxed">
-              Pack-Wise engagements integrate strategic development, compliance, and supply
-              chain disciplines into a single, accountable mandate.
+              Pack-Wise engagements integrate strategic development, compliance, and supply chain
+              disciplines into a single, accountable mandate.
             </p>
           </div>
         </div>

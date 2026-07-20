@@ -3,7 +3,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { z } from "zod";
 import { Mail, MapPin, ShieldCheck, Loader2, Phone } from "lucide-react";
-import logoImg from "@/assets/logo-light.png";
+import logoImg from "@/assets/logo-light.webp";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -14,11 +14,26 @@ export const Route = createFileRoute("/contact")({
         content:
           "Contact Pack-Wise for confidential pharmaceutical packaging consulting, regulatory compliance support, and packaging sourcing brief reviews within 24 business hours.",
       },
-      { name: "keywords", content: "pharmaceutical packaging consulting contact, pharma packaging compliance inquiry, packaging sourcing consultant contact" },
+      {
+        name: "keywords",
+        content:
+          "pharmaceutical packaging consulting contact, pharma packaging compliance inquiry, packaging sourcing consultant contact",
+      },
+      { property: "og:title", content: "Contact Pack-Wise | Pharmaceutical Packaging Consulting" },
+      {
+        property: "og:description",
+        content:
+          "Contact Pack-Wise for confidential pharmaceutical packaging consulting, regulatory compliance support, and packaging sourcing brief reviews within 24 business hours.",
+      },
+      { property: "og:url", content: "https://pack-wise.com/contact" },
+      { name: "twitter:title", content: "Contact Pack-Wise | Pharmaceutical Packaging Consulting" },
+      {
+        name: "twitter:description",
+        content:
+          "Contact Pack-Wise for confidential pharmaceutical packaging consulting, regulatory compliance support, and packaging sourcing brief reviews within 24 business hours.",
+      },
     ],
-    links: [
-      { rel: "canonical", href: "https://pack-wise.com/contact" },
-    ],
+    links: [{ rel: "canonical", href: "https://pack-wise.com/contact" }],
     scripts: [
       {
         type: "application/ld+json",
@@ -76,7 +91,7 @@ function ContactPage() {
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const parsed = schema.safeParse(form);
-    
+
     if (!parsed.success) {
       const newErrors: Record<string, string> = {};
       parsed.error.issues.forEach((issue) => {
@@ -86,15 +101,17 @@ function ContactPage() {
       toast.error("Please fix the errors in the form.");
       return;
     }
-    
+
     setErrors({});
     if (!web3FormsAccessKey) {
-      toast.error("Form is not configured yet. Add VITE_WEB3FORMS_ACCESS_KEY to the environment file.");
+      toast.error(
+        "Form is not configured yet. Add VITE_WEB3FORMS_ACCESS_KEY to the environment file.",
+      );
       return;
     }
 
     setLoading(true);
-    
+
     try {
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
@@ -135,22 +152,48 @@ function ContactPage() {
               <h1 className="mt-8 font-display text-3xl md:text-4xl font-semibold leading-tight">
                 Connect with an Executive Advisor.
               </h1>
-              <p className="mt-5 text-white/70 leading-relaxed">Confidential brief reviews within 24 business hours.</p>
+              <p className="mt-5 text-white/70 leading-relaxed">
+                Confidential brief reviews within 24 business hours.
+              </p>
 
               <div className="mt-12 space-y-6">
-                <InfoRow icon={<Phone size={18} />} label="USA" value="+1 640-203-0743" />
-                <InfoRow icon={<Phone size={18} />} label="India" value="+91 9820 924862" />
-                <InfoRow icon={<Mail size={18} />} label="Email" value="kundanshah73@gmail.com" />
-                <InfoRow icon={<ShieldCheck size={18} />} label="Confidentiality" value="NDA available on request" />
+                <InfoRow
+                  icon={<Phone size={18} />}
+                  label="USA"
+                  value="+1 640-203-0743"
+                  href="tel:+16402030743"
+                />
+                <InfoRow
+                  icon={<Phone size={18} />}
+                  label="India"
+                  value="+91 9820 924862"
+                  href="tel:+919820924862"
+                />
+                <InfoRow
+                  icon={<Mail size={18} />}
+                  label="Email"
+                  value="kundanshah73@gmail.com"
+                  href="mailto:kundanshah73@gmail.com"
+                />
+                <InfoRow
+                  icon={<ShieldCheck size={18} />}
+                  label="Confidentiality"
+                  value="NDA available on request"
+                />
               </div>
             </div>
           </div>
 
           {/* Right: form */}
-          <form onSubmit={onSubmit} className="rounded-2xl bg-card border border-border p-8 md:p-10 space-y-5">
+          <form
+            onSubmit={onSubmit}
+            className="rounded-2xl bg-card border border-border p-8 md:p-10 space-y-5"
+          >
             <div>
               <h2 className="font-display text-2xl font-semibold text-navy">Submit a Brief</h2>
-              <p className="mt-1.5 text-sm text-muted-foreground">All fields required. Reviewed under NDA.</p>
+              <p className="mt-1.5 text-sm text-muted-foreground">
+                All fields required. Reviewed under NDA.
+              </p>
             </div>
 
             <Field label="Full Name" error={errors.fullName}>
@@ -231,14 +274,26 @@ function ContactPage() {
 
 const inputCls = (hasError: boolean) =>
   `w-full rounded-md border ${
-    hasError ? "border-destructive/60 bg-destructive/5 focus:ring-destructive/20" : "border-input bg-background focus:ring-navy/20"
+    hasError
+      ? "border-destructive/60 bg-destructive/5 focus:ring-destructive/20"
+      : "border-input bg-background focus:ring-navy/20"
   } px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 outline-none transition-all focus:border-navy focus:ring-2`;
 
-function Field({ label, error, children }: { label: string; error?: string; children: React.ReactNode }) {
+function Field({
+  label,
+  error,
+  children,
+}: {
+  label: string;
+  error?: string;
+  children: React.ReactNode;
+}) {
   return (
     <label className="block">
       <div className="flex justify-between items-baseline">
-        <span className="text-xs font-semibold uppercase tracking-[0.18em] text-navy/70">{label}</span>
+        <span className="text-xs font-semibold uppercase tracking-[0.18em] text-navy/70">
+          {label}
+        </span>
         {error && <span className="text-xs font-medium text-destructive">{error}</span>}
       </div>
       <div className="mt-2">{children}</div>
@@ -246,7 +301,17 @@ function Field({ label, error, children }: { label: string; error?: string; chil
   );
 }
 
-function InfoRow({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
+function InfoRow({
+  icon,
+  label,
+  value,
+  href,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  value: string;
+  href?: string;
+}) {
   return (
     <div className="flex items-start gap-4">
       <span className="hex-clip flex h-10 w-11 shrink-0 items-center justify-center bg-bio/15 text-bio">
@@ -254,7 +319,15 @@ function InfoRow({ icon, label, value }: { icon: React.ReactNode; label: string;
       </span>
       <div>
         <div className="text-xs font-semibold uppercase tracking-[0.18em] text-bio/80">{label}</div>
-        <div className="mt-1 text-white/90">{value}</div>
+        <div className="mt-1 text-white/90">
+          {href ? (
+            <a href={href} className="hover:text-bio transition-colors">
+              {value}
+            </a>
+          ) : (
+            value
+          )}
+        </div>
       </div>
     </div>
   );
