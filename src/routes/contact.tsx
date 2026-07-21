@@ -1,9 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
-import { z } from "zod";
 import { Mail, Loader2, Phone } from "lucide-react";
 import logoImg from "@/assets/logo-light.webp";
+import { contactSchema } from "@/lib/contact-schema";
+import { submitContactForm } from "@/lib/contact-submit";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -36,6 +37,11 @@ export const Route = createFileRoute("/contact")({
     links: [{ rel: "canonical", href: "https://pack-wise.com/contact" }],
     scripts: [
       {
+        src: "https://challenges.cloudflare.com/turnstile/v0/api.js",
+        async: true,
+        defer: true,
+      },
+      {
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
@@ -59,17 +65,7 @@ export const Route = createFileRoute("/contact")({
   component: ContactPage,
 });
 
-const web3FormsAccessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY ?? "";
-
-const schema = z.object({
-  fullName: z.string().trim().min(2, "Full name required").max(100),
-  email: z.string().trim().email("Valid corporate email required").max(255),
-  company: z.string().trim().min(2, "Company name required").max(150),
-  sector: z.enum(["Pharma Manufacturer", "Packaging Producer", "Other"], {
-    message: "Select a sector",
-  }),
-  brief: z.string().trim().min(20, "Provide at least 20 characters").max(2000),
-});
+const turnstileSiteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY as string | undefined;
 
 function ContactPage() {
   const [form, setForm] = useState({
@@ -82,6 +78,30 @@ function ContactPage() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
   const [honeypot, setHoneypot] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const turnstileRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!turnstileSiteKey || !turnstileRef.current) return;
+    const container = turnstileRef.current;
+    let widgetId: string | undefined;
+
+    const interval = window.setInterval(() => {
+      if (!window.turnstile) return;
+      widgetId = window.turnstile.render(container, {
+        sitekey: turnstileSiteKey,
+        callback: (token) => setTurnstileToken(token),
+        "expired-callback": () => setTurnstileToken(""),
+        "error-callback": () => setTurnstileToken(""),
+      });
+      window.clearInterval(interval);
+    }, 200);
+
+    return () => {
+      window.clearInterval(interval);
+      if (widgetId) window.turnstile?.remove(widgetId);
+    };
+  }, []);
 
   const update = <K extends keyof typeof form>(k: K, v: (typeof form)[K]) => {
     setForm((f) => ({ ...f, [k]: v }));
@@ -93,7 +113,10 @@ function ContactPage() {
     e.preventDefault();
     if (honeypot) return;
 
-    const parsed = schema.safeParse(form);
+    // Client-side validation for instant field feedback. The server
+    // function re-validates with the same schema — this pass is never
+    // trusted on its own.
+    const parsed = contactSchema.safeParse(form);
 
     if (!parsed.success) {
       const newErrors: Record<string, string> = {};
@@ -106,36 +129,39 @@ function ContactPage() {
     }
 
     setErrors({});
-    if (!web3FormsAccessKey) {
-      toast.error(
-        "Form is not configured yet. Add VITE_WEB3FORMS_ACCESS_KEY to the environment file.",
-      );
-      return;
-    }
-
     setLoading(true);
 
     try {
-      const res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          access_key: web3FormsAccessKey,
-          subject: `New Project Brief from ${form.company}`,
-          from_name: form.fullName,
-          email: form.email,
-          company: form.company,
-          sector: form.sector,
-          message: form.brief,
-        }),
+      const result = await submitContactForm({
+        data: { ...form, turnstileToken, botcheck: honeypot },
       });
 
-      if (!res.ok) throw new Error("Submission failed");
+      if (result.ok) {
+        toast.success("Brief received", {
+          description: "An executive advisor will respond within 24 business hours.",
+        });
+        setForm({ fullName: "", email: "", company: "", sector: "", brief: "" });
+        setTurnstileToken("");
+        window.turnstile?.reset();
+        return;
+      }
 
-      toast.success("Brief received", {
-        description: "An executive advisor will respond within 24 business hours.",
-      });
-      setForm({ fullName: "", email: "", company: "", sector: "", brief: "" });
+      switch (result.reason) {
+        case "validation":
+          setErrors(result.fieldErrors);
+          toast.error("Please fix the errors in the form.");
+          break;
+        case "turnstile":
+          toast.error("Verification failed. Please retry the challenge below.");
+          window.turnstile?.reset();
+          setTurnstileToken("");
+          break;
+        case "rate_limit":
+          toast.error("Too many requests. Please try again in a few minutes.");
+          break;
+        default:
+          toast.error("Something went wrong. Please check your connection and retry.");
+      }
     } catch {
       toast.error("Something went wrong. Please check your connection and retry.");
     } finally {
@@ -275,9 +301,11 @@ function ContactPage() {
               />
             </Field>
 
+            {turnstileSiteKey && <div ref={turnstileRef} />}
+
             <button
               type="submit"
-              disabled={loading}
+              disabled={loading || (!!turnstileSiteKey && !turnstileToken)}
               className="w-full inline-flex items-center justify-center gap-2 rounded-md bg-bio px-6 py-3.5 text-sm font-semibold text-navy hover:bg-bio/90 hover:shadow-xl hover:shadow-bio/30 disabled:opacity-70 disabled:cursor-not-allowed transition-all"
             >
               {loading ? (
