@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import { Mail, Loader2, Phone } from "lucide-react";
@@ -68,6 +68,7 @@ export const Route = createFileRoute("/contact")({
 const turnstileSiteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY as string | undefined;
 
 function ContactPage() {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     fullName: "",
     email: "",
@@ -137,12 +138,7 @@ function ContactPage() {
       });
 
       if (result.ok) {
-        toast.success("Brief received", {
-          description: "An executive advisor will respond within 24 business hours.",
-        });
-        setForm({ fullName: "", email: "", company: "", sector: "", brief: "" });
-        setTurnstileToken("");
-        window.turnstile?.reset();
+        navigate({ to: "/contact/thank-you" });
         return;
       }
 
