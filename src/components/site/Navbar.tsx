@@ -77,7 +77,7 @@ export function Navbar() {
               key={l.to}
               to={l.to}
               onClick={() => setOpen(false)}
-              className="block text-sm font-medium text-foreground/80 py-1.5"
+              className="block text-sm font-medium text-foreground/80 hover:text-navy transition-colors py-1.5"
             >
               {l.label}
             </Link>
@@ -85,7 +85,7 @@ export function Navbar() {
           <Link
             to="/contact"
             onClick={() => setOpen(false)}
-            className="block text-center rounded-md bg-bio px-4 py-2.5 text-sm font-semibold text-navy"
+            className="block text-center rounded-md bg-bio px-4 py-2.5 text-sm font-semibold text-navy hover:bg-bio/90 transition-colors"
           >
             Schedule a Consultation
           </Link>

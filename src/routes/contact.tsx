@@ -81,6 +81,7 @@ function ContactPage() {
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
 
   const update = <K extends keyof typeof form>(k: K, v: (typeof form)[K]) => {
     setForm((f) => ({ ...f, [k]: v }));
@@ -90,6 +91,8 @@ function ContactPage() {
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (honeypot) return;
+
     const parsed = schema.safeParse(form);
 
     if (!parsed.success) {
@@ -191,42 +194,65 @@ function ContactPage() {
               </p>
             </div>
 
-            <Field label="Full Name" error={errors.fullName}>
+            <input
+              type="text"
+              name="botcheck"
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              className="absolute left-[-9999px] h-0 w-0 overflow-hidden opacity-0"
+            />
+
+            <Field id="fullName" label="Full Name" error={errors.fullName}>
               <input
+                id="fullName"
                 value={form.fullName}
                 onChange={(e) => update("fullName", e.target.value)}
                 maxLength={100}
                 className={inputCls(!!errors.fullName)}
                 placeholder="Dr. Jane Doe"
+                aria-invalid={!!errors.fullName}
+                aria-describedby={errors.fullName ? "fullName-error" : undefined}
               />
             </Field>
 
-            <Field label="Corporate Email" error={errors.email}>
+            <Field id="email" label="Corporate Email" error={errors.email}>
               <input
+                id="email"
                 type="email"
                 value={form.email}
                 onChange={(e) => update("email", e.target.value)}
                 maxLength={255}
                 className={inputCls(!!errors.email)}
                 placeholder="j.doe@company.com"
+                aria-invalid={!!errors.email}
+                aria-describedby={errors.email ? "email-error" : undefined}
               />
             </Field>
 
-            <Field label="Company Name" error={errors.company}>
+            <Field id="company" label="Company Name" error={errors.company}>
               <input
+                id="company"
                 value={form.company}
                 onChange={(e) => update("company", e.target.value)}
                 maxLength={150}
                 className={inputCls(!!errors.company)}
                 placeholder="Acme Pharmaceuticals"
+                aria-invalid={!!errors.company}
+                aria-describedby={errors.company ? "company-error" : undefined}
               />
             </Field>
 
-            <Field label="Sector" error={errors.sector}>
+            <Field id="sector" label="Sector" error={errors.sector}>
               <select
+                id="sector"
                 value={form.sector}
                 onChange={(e) => update("sector", e.target.value as typeof form.sector)}
                 className={inputCls(!!errors.sector) + " appearance-none bg-white"}
+                aria-invalid={!!errors.sector}
+                aria-describedby={errors.sector ? "sector-error" : undefined}
               >
                 <option value="">Select a sector…</option>
                 <option>Pharma Manufacturer</option>
@@ -235,14 +261,17 @@ function ContactPage() {
               </select>
             </Field>
 
-            <Field label="Project Brief" error={errors.brief}>
+            <Field id="brief" label="Project Brief" error={errors.brief}>
               <textarea
+                id="brief"
                 value={form.brief}
                 onChange={(e) => update("brief", e.target.value)}
                 maxLength={2000}
                 rows={5}
                 className={inputCls(!!errors.brief) + " resize-none"}
                 placeholder="Describe scope, timeline, and key constraints…"
+                aria-invalid={!!errors.brief}
+                aria-describedby={errors.brief ? "brief-error" : undefined}
               />
             </Field>
 
@@ -275,21 +304,27 @@ const inputCls = (hasError: boolean) =>
   } px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 outline-none transition-all focus:border-navy focus:ring-2`;
 
 function Field({
+  id,
   label,
   error,
   children,
 }: {
+  id: string;
   label: string;
   error?: string;
   children: React.ReactNode;
 }) {
   return (
-    <label className="block">
+    <label className="block" htmlFor={id}>
       <div className="flex justify-between items-baseline">
         <span className="text-xs font-semibold uppercase tracking-[0.18em] text-navy/70">
           {label}
         </span>
-        {error && <span className="text-xs font-medium text-destructive">{error}</span>}
+        {error && (
+          <span id={`${id}-error`} role="alert" className="text-xs font-medium text-destructive">
+            {error}
+          </span>
+        )}
       </div>
       <div className="mt-2">{children}</div>
     </label>
