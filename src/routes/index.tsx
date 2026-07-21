@@ -17,7 +17,7 @@ import {
   Zap,
 } from "lucide-react";
 import { SectionHeader } from "@/components/site/SectionHeader";
-import { TrustedByMarquee } from "@/components/site/TrustedByMarquee";
+import { TrustedBy } from "@/components/site/TrustedBy";
 import heroImg from "@/assets/hero-plant.webp";
 
 export const Route = createFileRoute("/")({
@@ -146,6 +146,9 @@ function HomePage() {
           <img
             src={heroImg}
             alt="Pharmaceutical packaging facility"
+            width={1920}
+            height={1080}
+            fetchPriority="high"
             className="h-full w-full object-cover opacity-30"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-navy-deep via-navy-deep/90 to-navy-deep/40" />
@@ -184,7 +187,7 @@ function HomePage() {
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-bio mb-6">
             Trusted by pharmaceutical manufacturers
           </p>
-          <TrustedByMarquee />
+          <TrustedBy />
         </div>
       </section>
 

@@ -1,6 +1,6 @@
 const companies = ["PHARMA CORP", "BIO-MED", "GLOBAL HEALTH", "APEX LABS", "SYNTHESIS"];
 
-export function TrustedByMarquee() {
+export function TrustedBy() {
   return (
     <ul className="flex flex-wrap items-center justify-center gap-x-12 gap-y-4 px-6">
       {companies.map((name) => (
