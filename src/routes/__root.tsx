@@ -10,6 +10,8 @@ import {
 import appCss from "../styles.css?url";
 import { SiteLayout } from "@/components/site/SiteLayout";
 
+const cfBeaconToken = import.meta.env.VITE_CF_BEACON_TOKEN as string | undefined;
+
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -124,6 +126,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
     ],
     scripts: [
+      ...(cfBeaconToken
+        ? [
+            {
+              src: "https://static.cloudflareinsights.com/beacon.min.js",
+              defer: true,
+              "data-cf-beacon": JSON.stringify({ token: cfBeaconToken }),
+            },
+          ]
+        : []),
       {
         type: "application/ld+json",
         children: JSON.stringify({
