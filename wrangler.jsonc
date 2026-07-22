@@ -1,13 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "tanstack-start-app",
+  "name": "packwise-premier-launch",
   "compatibility_date": "2025-09-24",
   "compatibility_flags": ["nodejs_compat"],
   "main": "src/server.ts",
-  // Secrets are never stored in this file. Before deploying, set the two
-  // server-only contact-form secrets on the Worker with:
-  //   wrangler secret put WEB3FORMS_ACCESS_KEY
-  //   wrangler secret put TURNSTILE_SECRET_KEY
-  // For local dev, add the same two (unprefixed) vars to .env — see
-  // .env.example. VITE_TURNSTILE_SITE_KEY is public and belongs in .env too.
 }
