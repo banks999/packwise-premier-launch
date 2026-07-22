@@ -1,10 +1,9 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { toast } from "sonner";
 import { Mail, Loader2, Phone } from "lucide-react";
 import logoImg from "@/assets/logo-light.webp";
 import { contactSchema } from "@/lib/contact-schema";
-import { submitContactForm } from "@/lib/contact-submit";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -37,11 +36,6 @@ export const Route = createFileRoute("/contact")({
     links: [{ rel: "canonical", href: "https://pack-wise.com/contact" }],
     scripts: [
       {
-        src: "https://challenges.cloudflare.com/turnstile/v0/api.js",
-        async: true,
-        defer: true,
-      },
-      {
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
@@ -65,7 +59,11 @@ export const Route = createFileRoute("/contact")({
   component: ContactPage,
 });
 
-const turnstileSiteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY as string | undefined;
+// Web3Forms access key. This is public by design — it's an alias for the
+// destination email, not a secret — so it's safe to bundle into client JS.
+// Must be present at BUILD time: set VITE_WEB3FORMS_ACCESS_KEY in the
+// Cloudflare Workers build environment variables (and in .env for local dev).
+const web3FormsAccessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY ?? "";
 
 function ContactPage() {
   const navigate = useNavigate();
@@ -79,30 +77,6 @@ function ContactPage() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
   const [honeypot, setHoneypot] = useState("");
-  const [turnstileToken, setTurnstileToken] = useState("");
-  const turnstileRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!turnstileSiteKey || !turnstileRef.current) return;
-    const container = turnstileRef.current;
-    let widgetId: string | undefined;
-
-    const interval = window.setInterval(() => {
-      if (!window.turnstile) return;
-      widgetId = window.turnstile.render(container, {
-        sitekey: turnstileSiteKey,
-        callback: (token) => setTurnstileToken(token),
-        "expired-callback": () => setTurnstileToken(""),
-        "error-callback": () => setTurnstileToken(""),
-      });
-      window.clearInterval(interval);
-    }, 200);
-
-    return () => {
-      window.clearInterval(interval);
-      if (widgetId) window.turnstile?.remove(widgetId);
-    };
-  }, []);
 
   const update = <K extends keyof typeof form>(k: K, v: (typeof form)[K]) => {
     setForm((f) => ({ ...f, [k]: v }));
@@ -114,9 +88,6 @@ function ContactPage() {
     e.preventDefault();
     if (honeypot) return;
 
-    // Client-side validation for instant field feedback. The server
-    // function re-validates with the same schema — this pass is never
-    // trusted on its own.
     const parsed = contactSchema.safeParse(form);
 
     if (!parsed.success) {
@@ -130,37 +101,35 @@ function ContactPage() {
     }
 
     setErrors({});
+    if (!web3FormsAccessKey) {
+      toast.error(
+        "Form is not configured yet. Set VITE_WEB3FORMS_ACCESS_KEY in the build environment.",
+      );
+      return;
+    }
+
     setLoading(true);
 
     try {
-      const result = await submitContactForm({
-        data: { ...form, turnstileToken, botcheck: honeypot },
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: web3FormsAccessKey,
+          subject: `New Project Brief from ${form.company}`,
+          from_name: form.fullName,
+          email: form.email,
+          company: form.company,
+          sector: form.sector,
+          message: form.brief,
+        }),
       });
 
-      if (result.ok) {
-        navigate({ to: "/contact/thank-you" });
-        return;
-      }
+      if (!res.ok) throw new Error("Submission failed");
 
-      switch (result.reason) {
-        case "validation":
-          setErrors(result.fieldErrors);
-          toast.error("Please fix the errors in the form.");
-          break;
-        case "turnstile":
-          toast.error("Verification failed. Please retry the challenge below.");
-          window.turnstile?.reset();
-          setTurnstileToken("");
-          break;
-        case "rate_limit":
-          toast.error("Too many requests. Please try again in a few minutes.");
-          break;
-        default:
-          toast.error("Something went wrong. Please check your connection and retry.");
-      }
+      navigate({ to: "/contact/thank-you" });
     } catch {
       toast.error("Something went wrong. Please check your connection and retry.");
-    } finally {
       setLoading(false);
     }
   };
@@ -297,11 +266,9 @@ function ContactPage() {
               />
             </Field>
 
-            {turnstileSiteKey && <div ref={turnstileRef} />}
-
             <button
               type="submit"
-              disabled={loading || (!!turnstileSiteKey && !turnstileToken)}
+              disabled={loading}
               className="w-full inline-flex items-center justify-center gap-2 rounded-md bg-bio px-6 py-3.5 text-sm font-semibold text-navy hover:bg-bio/90 hover:shadow-xl hover:shadow-bio/30 disabled:opacity-70 disabled:cursor-not-allowed transition-all"
             >
               {loading ? (
