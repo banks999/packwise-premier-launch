@@ -40,7 +40,7 @@ export const Route = createFileRoute("/")({
         content:
           "Pack-Wise provides pharmaceutical packaging consulting, regulatory compliance support, packaging sourcing, and cost optimization for global pharma companies.",
       },
-      { property: "og:url", content: "https://pack-wise.com/" },
+      { property: "og:url", content: "https://pack-wise.in/" },
       { name: "twitter:title", content: "Pharmaceutical Packaging Consulting | Pack-Wise" },
       {
         name: "twitter:description",
@@ -48,7 +48,7 @@ export const Route = createFileRoute("/")({
           "Pack-Wise provides pharmaceutical packaging consulting, regulatory compliance support, packaging sourcing, and cost optimization for global pharma companies.",
       },
     ],
-    links: [{ rel: "canonical", href: "https://pack-wise.com/" }],
+    links: [{ rel: "canonical", href: "https://pack-wise.in/" }],
   }),
   component: HomePage,
 });

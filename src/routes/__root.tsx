@@ -86,8 +86,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "Pack-Wise delivers pharmaceutical packaging consulting, regulatory compliance support, packaging sourcing, and vendor management for global pharma companies.",
       },
-      { property: "og:image", content: "https://pack-wise.com/hero-plant.jpg" },
-      { name: "twitter:image", content: "https://pack-wise.com/hero-plant.jpg" },
+      { property: "og:image", content: "https://pack-wise.in/hero-plant.jpg" },
+      { name: "twitter:image", content: "https://pack-wise.in/hero-plant.jpg" },
       {
         property: "og:title",
         content: "Pack-Wise | Pharmaceutical Packaging Consulting & Compliance",
@@ -111,7 +111,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
     ],
     links: [
-      { rel: "canonical", href: "https://pack-wise.com/" },
+      { rel: "canonical", href: "https://pack-wise.in/" },
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
       { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon.png" },
       { rel: "icon", type: "image/png", sizes: "192x192", href: "/icon-192.png" },
@@ -141,7 +141,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "@context": "https://schema.org",
           "@type": "Organization",
           name: "Pack-Wise",
-          url: "https://pack-wise.com/",
+          url: "https://pack-wise.in/",
           description:
             "Specialized pharmaceutical packaging consulting focused on compliance, sourcing, and operational efficiency.",
         }),
