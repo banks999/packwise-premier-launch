@@ -17,7 +17,6 @@ import {
   Zap,
 } from "lucide-react";
 import { SectionHeader } from "@/components/site/SectionHeader";
-import { TrustedBy } from "@/components/site/TrustedBy";
 import heroImg from "@/assets/hero-plant.webp";
 
 export const Route = createFileRoute("/")({
@@ -180,14 +179,6 @@ function HomePage() {
               </Link>
             </div>
           </div>
-        </div>
-
-        {/* Trusted By Strip */}
-        <div className="relative border-t border-white/10 bg-navy-deep py-8 text-center z-10">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-bio mb-6">
-            Trusted by pharmaceutical manufacturers
-          </p>
-          <TrustedBy />
         </div>
       </section>
 
