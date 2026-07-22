@@ -25,7 +25,7 @@ export const Route = createFileRoute("/contact")({
         content:
           "Contact Pack-Wise for confidential pharmaceutical packaging consulting, regulatory compliance support, and packaging sourcing brief reviews within 24 business hours.",
       },
-      { property: "og:url", content: "https://pack-wise.com/contact" },
+      { property: "og:url", content: "https://pack-wise.in/contact" },
       { name: "twitter:title", content: "Contact Pack-Wise | Pharmaceutical Packaging Consulting" },
       {
         name: "twitter:description",
@@ -33,7 +33,7 @@ export const Route = createFileRoute("/contact")({
           "Contact Pack-Wise for confidential pharmaceutical packaging consulting, regulatory compliance support, and packaging sourcing brief reviews within 24 business hours.",
       },
     ],
-    links: [{ rel: "canonical", href: "https://pack-wise.com/contact" }],
+    links: [{ rel: "canonical", href: "https://pack-wise.in/contact" }],
     scripts: [
       {
         type: "application/ld+json",
@@ -43,8 +43,8 @@ export const Route = createFileRoute("/contact")({
           mainEntity: {
             "@type": "Organization",
             name: "Pack-Wise",
-            url: "https://pack-wise.com/",
-            logo: "https://pack-wise.com/logo.png",
+            url: "https://pack-wise.in/",
+            logo: "https://pack-wise.in/logo.png",
             contactPoint: {
               "@type": "ContactPoint",
               contactType: "customer support",

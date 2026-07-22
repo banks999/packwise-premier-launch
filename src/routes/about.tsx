@@ -22,7 +22,7 @@ export const Route = createFileRoute("/about")({
         content:
           "Meet Kundanraj Shah, Founder & CEO of Pack-Wise, with 32+ years of pharmaceutical packaging expertise, FDA and EU GMP experience, and global operational insight.",
       },
-      { property: "og:url", content: "https://pack-wise.com/about" },
+      { property: "og:url", content: "https://pack-wise.in/about" },
       { name: "twitter:title", content: "About Pack-Wise | Pharmaceutical Packaging Consultant" },
       {
         name: "twitter:description",
@@ -30,7 +30,7 @@ export const Route = createFileRoute("/about")({
           "Meet Kundanraj Shah, Founder & CEO of Pack-Wise, with 32+ years of pharmaceutical packaging expertise, FDA and EU GMP experience, and global operational insight.",
       },
     ],
-    links: [{ rel: "canonical", href: "https://pack-wise.com/about" }],
+    links: [{ rel: "canonical", href: "https://pack-wise.in/about" }],
   }),
   component: AboutPage,
 });
