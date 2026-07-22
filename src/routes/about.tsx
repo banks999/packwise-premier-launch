@@ -73,24 +73,17 @@ function AboutPage() {
             Pack-Wise helps pharmaceutical teams deliver compliant, manufacturable, and brand-safe
             packaging.
           </p>
-          <details className="mt-4 prose">
-            <summary className="cursor-pointer font-medium">Read more about our approach</summary>
-            <div className="mt-3">
-              <p>
-                Pack-Wise is a specialized consultancy dedicated to supporting pharmaceutical
-                companies in developing, optimizing, and delivering high-quality packaging solutions
-                that meet global regulatory standards. With a deep understanding of the
-                pharmaceutical industry, we bridge the gap between compliance, functionality, and
-                brand excellence.
-              </p>
-              <p>
-                Our goal is to help our clients navigate the complexities of pharmaceutical
-                packaging while ensuring efficiency, cost-effectiveness, and market readiness. Every
-                engagement is treated as a mission-critical brief — confidential, structured, and
-                outcome-bound.
-              </p>
-            </div>
-          </details>
+          <p>
+            Pack-Wise is a specialized consultancy dedicated to supporting pharmaceutical companies
+            in developing, optimizing, and delivering high-quality packaging solutions that meet
+            global regulatory standards. With a deep understanding of the pharmaceutical industry,
+            we bridge the gap between compliance, functionality, and brand excellence.
+          </p>
+          <p>
+            Our goal is to help our clients navigate the complexities of pharmaceutical packaging
+            while ensuring efficiency, cost-effectiveness, and market readiness. Every engagement is
+            treated as a mission-critical brief — confidential, structured, and outcome-bound.
+          </p>
         </div>
       </section>
 
@@ -233,7 +226,7 @@ function AboutPage() {
             </blockquote>
             {/* decorative quotes removed */}
           </div>
-          <p className="mt-16 text-xs font-semibold uppercase tracking-[0.18em] text-white/50">
+          <p className="mt-16 text-xs font-semibold uppercase tracking-[0.18em] text-white/70">
             — Kundanraj Shah, Founder & CEO, Pack-Wise
           </p>
         </div>

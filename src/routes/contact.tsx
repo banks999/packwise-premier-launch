@@ -1,9 +1,10 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
-import { z } from "zod";
 import { Mail, Loader2, Phone } from "lucide-react";
 import logoImg from "@/assets/logo-light.webp";
+import { contactSchema } from "@/lib/contact-schema";
+import { submitContactForm } from "@/lib/contact-submit";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -36,6 +37,11 @@ export const Route = createFileRoute("/contact")({
     links: [{ rel: "canonical", href: "https://pack-wise.com/contact" }],
     scripts: [
       {
+        src: "https://challenges.cloudflare.com/turnstile/v0/api.js",
+        async: true,
+        defer: true,
+      },
+      {
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
@@ -59,19 +65,10 @@ export const Route = createFileRoute("/contact")({
   component: ContactPage,
 });
 
-const web3FormsAccessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY ?? "";
-
-const schema = z.object({
-  fullName: z.string().trim().min(2, "Full name required").max(100),
-  email: z.string().trim().email("Valid corporate email required").max(255),
-  company: z.string().trim().min(2, "Company name required").max(150),
-  sector: z.enum(["Pharma Manufacturer", "Packaging Producer", "Other"], {
-    message: "Select a sector",
-  }),
-  brief: z.string().trim().min(20, "Provide at least 20 characters").max(2000),
-});
+const turnstileSiteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY as string | undefined;
 
 function ContactPage() {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     fullName: "",
     email: "",
@@ -81,6 +78,31 @@ function ContactPage() {
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const turnstileRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!turnstileSiteKey || !turnstileRef.current) return;
+    const container = turnstileRef.current;
+    let widgetId: string | undefined;
+
+    const interval = window.setInterval(() => {
+      if (!window.turnstile) return;
+      widgetId = window.turnstile.render(container, {
+        sitekey: turnstileSiteKey,
+        callback: (token) => setTurnstileToken(token),
+        "expired-callback": () => setTurnstileToken(""),
+        "error-callback": () => setTurnstileToken(""),
+      });
+      window.clearInterval(interval);
+    }, 200);
+
+    return () => {
+      window.clearInterval(interval);
+      if (widgetId) window.turnstile?.remove(widgetId);
+    };
+  }, []);
 
   const update = <K extends keyof typeof form>(k: K, v: (typeof form)[K]) => {
     setForm((f) => ({ ...f, [k]: v }));
@@ -90,7 +112,12 @@ function ContactPage() {
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const parsed = schema.safeParse(form);
+    if (honeypot) return;
+
+    // Client-side validation for instant field feedback. The server
+    // function re-validates with the same schema — this pass is never
+    // trusted on its own.
+    const parsed = contactSchema.safeParse(form);
 
     if (!parsed.success) {
       const newErrors: Record<string, string> = {};
@@ -103,36 +130,34 @@ function ContactPage() {
     }
 
     setErrors({});
-    if (!web3FormsAccessKey) {
-      toast.error(
-        "Form is not configured yet. Add VITE_WEB3FORMS_ACCESS_KEY to the environment file.",
-      );
-      return;
-    }
-
     setLoading(true);
 
     try {
-      const res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          access_key: web3FormsAccessKey,
-          subject: `New Project Brief from ${form.company}`,
-          from_name: form.fullName,
-          email: form.email,
-          company: form.company,
-          sector: form.sector,
-          message: form.brief,
-        }),
+      const result = await submitContactForm({
+        data: { ...form, turnstileToken, botcheck: honeypot },
       });
 
-      if (!res.ok) throw new Error("Submission failed");
+      if (result.ok) {
+        navigate({ to: "/contact/thank-you" });
+        return;
+      }
 
-      toast.success("Brief received", {
-        description: "An executive advisor will respond within 24 business hours.",
-      });
-      setForm({ fullName: "", email: "", company: "", sector: "", brief: "" });
+      switch (result.reason) {
+        case "validation":
+          setErrors(result.fieldErrors);
+          toast.error("Please fix the errors in the form.");
+          break;
+        case "turnstile":
+          toast.error("Verification failed. Please retry the challenge below.");
+          window.turnstile?.reset();
+          setTurnstileToken("");
+          break;
+        case "rate_limit":
+          toast.error("Too many requests. Please try again in a few minutes.");
+          break;
+        default:
+          toast.error("Something went wrong. Please check your connection and retry.");
+      }
     } catch {
       toast.error("Something went wrong. Please check your connection and retry.");
     } finally {
@@ -191,42 +216,65 @@ function ContactPage() {
               </p>
             </div>
 
-            <Field label="Full Name" error={errors.fullName}>
+            <input
+              type="text"
+              name="botcheck"
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              className="absolute left-[-9999px] h-0 w-0 overflow-hidden opacity-0"
+            />
+
+            <Field id="fullName" label="Full Name" error={errors.fullName}>
               <input
+                id="fullName"
                 value={form.fullName}
                 onChange={(e) => update("fullName", e.target.value)}
                 maxLength={100}
                 className={inputCls(!!errors.fullName)}
                 placeholder="Dr. Jane Doe"
+                aria-invalid={!!errors.fullName}
+                aria-describedby={errors.fullName ? "fullName-error" : undefined}
               />
             </Field>
 
-            <Field label="Corporate Email" error={errors.email}>
+            <Field id="email" label="Corporate Email" error={errors.email}>
               <input
+                id="email"
                 type="email"
                 value={form.email}
                 onChange={(e) => update("email", e.target.value)}
                 maxLength={255}
                 className={inputCls(!!errors.email)}
                 placeholder="j.doe@company.com"
+                aria-invalid={!!errors.email}
+                aria-describedby={errors.email ? "email-error" : undefined}
               />
             </Field>
 
-            <Field label="Company Name" error={errors.company}>
+            <Field id="company" label="Company Name" error={errors.company}>
               <input
+                id="company"
                 value={form.company}
                 onChange={(e) => update("company", e.target.value)}
                 maxLength={150}
                 className={inputCls(!!errors.company)}
                 placeholder="Acme Pharmaceuticals"
+                aria-invalid={!!errors.company}
+                aria-describedby={errors.company ? "company-error" : undefined}
               />
             </Field>
 
-            <Field label="Sector" error={errors.sector}>
+            <Field id="sector" label="Sector" error={errors.sector}>
               <select
+                id="sector"
                 value={form.sector}
                 onChange={(e) => update("sector", e.target.value as typeof form.sector)}
                 className={inputCls(!!errors.sector) + " appearance-none bg-white"}
+                aria-invalid={!!errors.sector}
+                aria-describedby={errors.sector ? "sector-error" : undefined}
               >
                 <option value="">Select a sector…</option>
                 <option>Pharma Manufacturer</option>
@@ -235,20 +283,25 @@ function ContactPage() {
               </select>
             </Field>
 
-            <Field label="Project Brief" error={errors.brief}>
+            <Field id="brief" label="Project Brief" error={errors.brief}>
               <textarea
+                id="brief"
                 value={form.brief}
                 onChange={(e) => update("brief", e.target.value)}
                 maxLength={2000}
                 rows={5}
                 className={inputCls(!!errors.brief) + " resize-none"}
                 placeholder="Describe scope, timeline, and key constraints…"
+                aria-invalid={!!errors.brief}
+                aria-describedby={errors.brief ? "brief-error" : undefined}
               />
             </Field>
 
+            {turnstileSiteKey && <div ref={turnstileRef} />}
+
             <button
               type="submit"
-              disabled={loading}
+              disabled={loading || (!!turnstileSiteKey && !turnstileToken)}
               className="w-full inline-flex items-center justify-center gap-2 rounded-md bg-bio px-6 py-3.5 text-sm font-semibold text-navy hover:bg-bio/90 hover:shadow-xl hover:shadow-bio/30 disabled:opacity-70 disabled:cursor-not-allowed transition-all"
             >
               {loading ? (
@@ -275,21 +328,27 @@ const inputCls = (hasError: boolean) =>
   } px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 outline-none transition-all focus:border-navy focus:ring-2`;
 
 function Field({
+  id,
   label,
   error,
   children,
 }: {
+  id: string;
   label: string;
   error?: string;
   children: React.ReactNode;
 }) {
   return (
-    <label className="block">
+    <label className="block" htmlFor={id}>
       <div className="flex justify-between items-baseline">
         <span className="text-xs font-semibold uppercase tracking-[0.18em] text-navy/70">
           {label}
         </span>
-        {error && <span className="text-xs font-medium text-destructive">{error}</span>}
+        {error && (
+          <span id={`${id}-error`} role="alert" className="text-xs font-medium text-destructive">
+            {error}
+          </span>
+        )}
       </div>
       <div className="mt-2">{children}</div>
     </label>

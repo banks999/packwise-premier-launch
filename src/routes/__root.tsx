@@ -1,6 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
-  Outlet,
   Link,
   createRootRouteWithContext,
   useRouter,
@@ -10,6 +9,8 @@ import {
 
 import appCss from "../styles.css?url";
 import { SiteLayout } from "@/components/site/SiteLayout";
+
+const cfBeaconToken = import.meta.env.VITE_CF_BEACON_TOKEN as string | undefined;
 
 function NotFoundComponent() {
   return (
@@ -23,7 +24,7 @@ function NotFoundComponent() {
         <div className="mt-6">
           <Link
             to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="inline-flex items-center justify-center rounded-md bg-bio px-4 py-2 text-sm font-medium text-navy transition-colors hover:bg-bio/90"
           >
             Go home
           </Link>
@@ -52,7 +53,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
               router.invalidate();
               reset();
             }}
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="inline-flex items-center justify-center rounded-md bg-bio px-4 py-2 text-sm font-medium text-navy transition-colors hover:bg-bio/90"
           >
             Try again
           </button>
@@ -125,6 +126,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
     ],
     scripts: [
+      ...(cfBeaconToken
+        ? [
+            {
+              src: "https://static.cloudflareinsights.com/beacon.min.js",
+              defer: true,
+              "data-cf-beacon": JSON.stringify({ token: cfBeaconToken }),
+            },
+          ]
+        : []),
       {
         type: "application/ld+json",
         children: JSON.stringify({

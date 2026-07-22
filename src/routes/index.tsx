@@ -17,7 +17,7 @@ import {
   Zap,
 } from "lucide-react";
 import { SectionHeader } from "@/components/site/SectionHeader";
-import { TrustedByMarquee } from "@/components/site/TrustedByMarquee";
+import { TrustedBy } from "@/components/site/TrustedBy";
 import heroImg from "@/assets/hero-plant.webp";
 
 export const Route = createFileRoute("/")({
@@ -146,6 +146,9 @@ function HomePage() {
           <img
             src={heroImg}
             alt="Pharmaceutical packaging facility"
+            width={1920}
+            height={1080}
+            fetchPriority="high"
             className="h-full w-full object-cover opacity-30"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-navy-deep via-navy-deep/90 to-navy-deep/40" />
@@ -184,7 +187,7 @@ function HomePage() {
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-bio mb-6">
             Trusted by pharmaceutical manufacturers
           </p>
-          <TrustedByMarquee />
+          <TrustedBy />
         </div>
       </section>
 
@@ -211,7 +214,7 @@ function HomePage() {
           />
           <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {consultingServices.map((s) => (
-              <ServiceCard key={s.title} icon={s.icon} title={s.title} body={s.body} />
+              <IconCard key={s.title} icon={s.icon} title={s.title} body={s.body} />
             ))}
           </div>
         </div>
@@ -226,7 +229,7 @@ function HomePage() {
         />
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {materialExpertise.map((m) => (
-            <ExpertiseCard key={m.title} icon={m.icon} title={m.title} body={m.body} />
+            <IconCard key={m.title} icon={m.icon} title={m.title} body={m.body} />
           ))}
         </div>
       </section>
@@ -273,35 +276,7 @@ function HomePage() {
   );
 }
 
-function ServiceCard({
-  icon,
-  title,
-  body,
-}: {
-  icon: React.ReactNode;
-  title: string;
-  body: string;
-}) {
-  return (
-    <div className="rounded-xl border border-border bg-card p-7 hover:border-navy/40 hover:shadow-lg hover:shadow-navy/5 transition-all duration-300">
-      <span className="hex-clip flex h-10 w-11 items-center justify-center bg-navy text-bio">
-        {icon}
-      </span>
-      <h3 className="mt-5 font-display text-lg font-semibold text-navy">{title}</h3>
-      <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{body}</p>
-    </div>
-  );
-}
-
-function ExpertiseCard({
-  icon,
-  title,
-  body,
-}: {
-  icon: React.ReactNode;
-  title: string;
-  body: string;
-}) {
+function IconCard({ icon, title, body }: { icon: React.ReactNode; title: string; body: string }) {
   return (
     <div className="rounded-xl border border-border bg-card p-7 hover:border-navy/40 hover:shadow-lg hover:shadow-navy/5 transition-all duration-300">
       <span className="hex-clip flex h-10 w-11 items-center justify-center bg-navy text-bio">

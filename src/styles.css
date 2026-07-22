@@ -88,12 +88,30 @@
     letter-spacing: -0.02em;
   }
 
-  /* Make navigational links highlight in brand yellow on hover */
   a[href] {
     transition: color 160ms ease-in-out;
   }
-  a[href]:hover {
-    color: var(--color-bio) !important;
+
+  /* Keeps the browser's native scroll-into-view (keyboard focus, anchor
+     links) from landing a target underneath the fixed header. Matches the
+     header's height, same as SiteLayout's pt-[72px] main offset. */
+  html {
+    scroll-padding-top: 72px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+
+  [class*="group-hover:translate-x"],
+  [class*="hover:-translate-y"] {
+    transform: none !important;
   }
 }
 
@@ -142,17 +160,4 @@
 
 @utility hex-clip {
   clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
-}
-
-@keyframes marquee-right {
-  from {
-    transform: translateX(-50%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
-@utility animate-marquee-right {
-  animation: marquee-right 45s linear infinite;
 }
