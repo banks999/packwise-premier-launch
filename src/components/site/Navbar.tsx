@@ -1,7 +1,10 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
-import logoImg from "@/assets/logo.webp";
+import { CtaButton } from "./blocks";
+
+// Served from /public as a static asset (referenced by URL, not imported).
+const logoImg = "/logo-packwise.png";
 
 const links = [
   { to: "/", label: "Home" },
@@ -10,18 +13,13 @@ const links = [
   { to: "/contact", label: "Contact Us" },
 ] as const;
 
+const navLinkCls =
+  "font-display text-sm font-medium text-navy py-1 border-b-2 border-transparent hover:border-bio data-[status=active]:border-bio transition-colors";
+
 export function Navbar() {
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   const closeMenu = () => {
     setOpen(false);
@@ -73,44 +71,28 @@ export function Navbar() {
   }, [open]);
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "backdrop-blur-xl bg-background/95 border-b border-border/60"
-          : "backdrop-blur-md bg-background/85"
-      }`}
-    >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <Link to="/" className="group">
-          <img src={logoImg} alt="Pack-Wise" className="h-10 w-auto" />
+    <header className="sticky top-0 z-50 border-b border-border bg-background">
+      <div className="mx-auto flex min-h-[78px] max-w-[1180px] flex-wrap items-center justify-between gap-5 px-6 md:px-12">
+        <Link to="/" className="flex flex-col items-start gap-px py-3">
+          <img src={logoImg} alt="Pack-Wise" width={210} height={71} className="block h-[52px] w-auto" />
+          <span className="whitespace-nowrap pl-[66px] font-display text-[10.5px] font-semibold uppercase leading-tight tracking-[0.2em] text-[#B7A53A]">
+            Packaging that performs
+          </span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-9">
+        <nav className="hidden items-center gap-[clamp(14px,2.4vw,34px)] md:flex">
           {links.map((l) => (
-            <Link
-              key={l.to}
-              to={l.to}
-              activeOptions={{ exact: l.to === "/" }}
-              className="text-sm font-medium text-foreground/80 hover:text-navy transition-colors data-[status=active]:text-navy data-[status=active]:font-semibold"
-            >
+            <Link key={l.to} to={l.to} activeOptions={{ exact: l.to === "/" }} className={navLinkCls}>
               {l.label}
             </Link>
           ))}
+          <CtaButton className="px-[22px] py-3 text-[13.5px]" />
         </nav>
-
-        <div className="hidden md:block">
-          <Link
-            to="/contact"
-            className="inline-flex items-center rounded-md bg-bio px-4 py-2.5 text-sm font-semibold text-navy ring-1 ring-navy/10 hover:bg-bio/90 hover:shadow-lg hover:shadow-bio/30 transition-all"
-          >
-            Schedule a Consultation
-          </Link>
-        </div>
 
         <button
           ref={toggleRef}
           onClick={() => setOpen((o) => !o)}
-          className="md:hidden p-2 text-navy"
+          className="p-2 text-navy md:hidden"
           aria-label={open ? "Close menu" : "Menu"}
           aria-expanded={open}
           aria-controls="mobile-menu"
@@ -123,25 +105,19 @@ export function Navbar() {
         <div
           ref={menuRef}
           id="mobile-menu"
-          className="md:hidden border-t border-border bg-background/95 backdrop-blur-xl px-6 py-4 space-y-3"
+          className="space-y-3 border-t border-border bg-background px-6 py-4 md:hidden"
         >
           {links.map((l) => (
             <Link
               key={l.to}
               to={l.to}
               onClick={closeMenu}
-              className="block text-sm font-medium text-foreground/80 hover:text-navy transition-colors py-1.5"
+              className="block py-1.5 font-display text-sm font-medium text-navy"
             >
               {l.label}
             </Link>
           ))}
-          <Link
-            to="/contact"
-            onClick={() => setOpen(false)}
-            className="block text-center rounded-md bg-bio px-4 py-2.5 text-sm font-semibold text-navy hover:bg-bio/90 transition-colors"
-          >
-            Schedule a Consultation
-          </Link>
+          <CtaButton className="w-full" />
         </div>
       )}
     </header>

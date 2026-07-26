@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { SectionHeader } from "@/components/site/SectionHeader";
-import { ShieldCheck, Network, Wrench, Check } from "lucide-react";
+import { Container, CtaBand, Eyebrow, Hero } from "@/components/site/blocks";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -35,202 +34,86 @@ export const Route = createFileRoute("/about")({
   component: AboutPage,
 });
 
-const achievements = [
-  "Delivered multi-million-dollar revenue growth, consistently outperforming business targets",
-  "Partnered with leading global and domestic pharmaceutical companies, becoming a trusted packaging advisor",
-  "Executed complex, compliance-critical packaging programs across regulated markets",
-  "Spearheaded plant expansions, new product introductions, and process optimizations",
-  "Known for solving high-stakes packaging challenges with speed, precision, and commercial impact",
+const experience = [
+  "Over 32 years of operating experience in pharmaceutical packaging across manufacturing, quality, and commercial functions.",
+  "Direct experience establishing a fully compliant manufacturing and warehousing operation in the United States.",
+  "Established relationships across pharmaceutical and nutraceutical companies in the US and India.",
+  "Working knowledge of both supplier capability and customer qualification requirements.",
+  "Senior-level involvement on every engagement.",
 ];
 
 function AboutPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="bg-navy-deep text-navy-foreground relative overflow-hidden">
-        <div className="absolute inset-0 hex-grid opacity-40" />
-        <div className="relative mx-auto max-w-7xl px-6 py-24 md:py-36">
-          <div className="max-w-4xl">
-            <span className="text-xs font-semibold uppercase tracking-[0.18em] text-bio">
-              About Pack-Wise
+      <Hero
+        eyebrow="About Us"
+        title="A specialist partner for pharmaceutical packaging."
+        subtitle="Pack-Wise brings three decades of hands-on industry experience to packaging manufacturers and contract packagers entering regulated markets."
+      />
+
+      {/* Positioning */}
+      <section>
+        <Container className="flex flex-wrap gap-[clamp(36px,5vw,72px)] py-[clamp(56px,8vw,96px)]">
+          <div className="min-w-[260px] flex-1 basis-[300px]">
+            <Eyebrow className="mb-[22px]">Our Positioning</Eyebrow>
+            <h2 className="font-display text-[clamp(24px,3vw,34px)] font-bold leading-tight tracking-[-0.01em] text-navy">
+              Built around the realities of regulated supply.
+            </h2>
+          </div>
+          <div className="min-w-[300px] flex-[1.4_1_360px]">
+            <p className="mb-[22px] text-[17px] leading-[1.7] text-foreground">
+              Pack-Wise is a business development and consulting firm serving the pharmaceutical and
+              nutraceutical packaging sector. We work with packaging manufacturers and contract
+              packagers to expand their customer base, establish supply into regulated markets, and
+              strengthen the technical and regulatory capabilities their customers require.
+            </p>
+            <p className="text-[17px] leading-[1.7] text-foreground">
+              Every engagement combines commercial market development with a working understanding of
+              the quality, regulatory, and operational standards pharmaceutical customers expect — so
+              suppliers are positioned not only to reach new accounts, but to qualify and retain them.
+            </p>
+          </div>
+        </Container>
+      </section>
+
+      {/* Founder + experience */}
+      <section className="border-y border-border bg-slate-canvas">
+        <Container className="flex flex-wrap gap-[clamp(36px,5vw,64px)] py-[clamp(56px,8vw,96px)]">
+          <div className="min-w-[280px] flex-1 basis-[300px] bg-navy p-[clamp(34px,4vw,48px)]">
+            <span className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-bio">
+              Founder &amp; CEO
             </span>
-            <h1 className="mt-4 font-display text-4xl md:text-6xl font-semibold leading-[1.05]">
-              Built on 32 years of pharmaceutical packaging expertise and{" "}
-              <span className="text-bio">global operational insight.</span>
-            </h1>
+            <h2 className="mb-5 mt-4 font-display text-[clamp(28px,3.2vw,36px)] font-bold text-white">
+              Kundanraj Shah
+            </h2>
+            <p className="mb-[18px] text-base leading-[1.7] text-[#C6CCD6]">
+              Over 32 years in the pharmaceutical packaging industry, including five years
+              establishing and operating a compliant manufacturing and warehousing facility in New
+              Jersey, USA.
+            </p>
+            <p className="text-base leading-[1.7] text-[#C6CCD6]">
+              That operating background — spanning manufacturing, quality, and commercial functions —
+              informs a practical, senior-led approach to every client engagement.
+            </p>
           </div>
-        </div>
-      </section>
-
-      {/* Executive Vision */}
-      <section className="mx-auto max-w-5xl px-6 py-24 md:py-32">
-        <SectionHeader
-          eyebrow="Our Mission"
-          title="Bridging compliance, functionality, and brand excellence."
-        />
-        <div className="mt-10 space-y-6 text-base md:text-lg text-foreground/80 leading-relaxed">
-          <p>
-            Pack-Wise helps pharmaceutical teams deliver compliant, manufacturable, and brand-safe
-            packaging.
-          </p>
-          <p>
-            Pack-Wise is a specialized consultancy dedicated to supporting pharmaceutical companies
-            in developing, optimizing, and delivering high-quality packaging solutions that meet
-            global regulatory standards. With a deep understanding of the pharmaceutical industry,
-            we bridge the gap between compliance, functionality, and brand excellence.
-          </p>
-          <p>
-            Our goal is to help our clients navigate the complexities of pharmaceutical packaging
-            while ensuring efficiency, cost-effectiveness, and market readiness. Every engagement is
-            treated as a mission-critical brief — confidential, structured, and outcome-bound.
-          </p>
-        </div>
-      </section>
-
-      {/* Operational Pillars */}
-      <section className="bg-slate-canvas border-y border-border">
-        <div className="mx-auto max-w-7xl px-6 py-24 md:py-32">
-          <SectionHeader
-            eyebrow="Operational Pillars"
-            title="Three commitments that govern every Pack-Wise engagement."
-          />
-          <div className="mt-14 grid gap-6 md:grid-cols-3">
-            {[
-              {
-                icon: <ShieldCheck size={22} />,
-                title: "Uncompromising Regulatory Compliance",
-                body: "FDA, EU GMP, and global serialization frameworks are non-negotiable baselines — embedded at every stage.",
-              },
-              {
-                icon: <Network size={22} />,
-                title: "Global Vendor Network",
-                body: "Multi-sourced, qualification-audited supplier networks for bottles, closures, glass, and printed componentry.",
-              },
-              {
-                icon: <Wrench size={22} />,
-                title: "End-to-End Execution",
-                body: "From packaging strategy through vendor management and cost optimization — delivered under one accountability line.",
-              },
-            ].map((p) => (
-              <div
-                key={p.title}
-                className="rounded-xl bg-card border border-border p-8 hover:border-navy/40 hover:shadow-lg hover:shadow-navy/5 transition-all"
-              >
-                <span className="hex-clip flex h-10 w-11 items-center justify-center bg-navy text-bio">
-                  {p.icon}
-                </span>
-                <h3 className="mt-5 font-display text-xl font-semibold text-navy">{p.title}</h3>
-                <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{p.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 6. Executive Profile: Founder & CEO */}
-      <section className="mx-auto max-w-7xl px-6 py-24 md:py-32">
-        <SectionHeader eyebrow="Founder & Leadership" title="The expertise behind Pack-Wise." />
-        <div className="mt-14 grid gap-12 lg:grid-cols-[300px_1fr] items-start">
-          {/* Profile Card */}
-          <div className="rounded-xl border border-border bg-card p-6 lg:sticky lg:top-8">
-            <div className="aspect-[4/5] rounded-lg bg-gradient-to-br from-navy/90 to-navy-deep hex-grid relative overflow-hidden">
-              <div className="absolute bottom-4 left-4">
-                <span className="hex-clip inline-flex h-10 w-11 items-center justify-center bg-bio text-navy font-display font-semibold text-sm">
-                  KS
-                </span>
-              </div>
-            </div>
-            <div className="mt-5 space-y-1">
-              <div className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                Founder & CEO
-              </div>
-              <h3 className="font-display text-xl font-semibold text-navy">Kundanraj Shah</h3>
-              <p className="text-sm text-muted-foreground">Pack-Wise Consulting</p>
-            </div>
-            <div className="mt-5 pt-5 border-t border-border space-y-2">
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <span className="h-1.5 w-1.5 rounded-full bg-bio flex-shrink-0" />
-                32+ Years Industry Experience
-              </div>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <span className="h-1.5 w-1.5 rounded-full bg-bio flex-shrink-0" />5 Years US Market
-                Experience
-              </div>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <span className="h-1.5 w-1.5 rounded-full bg-bio flex-shrink-0" />
-                USFDA & EU GMP Compliance
-              </div>
+          <div className="min-w-[300px] flex-1 basis-[320px]">
+            <Eyebrow className="mb-7">Experience</Eyebrow>
+            <div className="flex flex-col gap-[18px]">
+              {experience.map((e) => (
+                <div key={e} className="flex items-start gap-4">
+                  <span className="mt-[7px] block h-2.5 w-2.5 flex-none bg-bio" />
+                  <p className="text-[15.5px] leading-relaxed text-[#3A4150]">{e}</p>
+                </div>
+              ))}
             </div>
           </div>
-
-          {/* Bio & Achievements */}
-          <div>
-            <div className="space-y-5 text-base md:text-lg text-foreground/80 leading-relaxed">
-              <p>
-                Kundanraj Shah brings over{" "}
-                <strong className="text-foreground font-semibold">
-                  32 years of extensive experience
-                </strong>{" "}
-                in the primary packaging industry, including 5 years of professional experience in
-                the United States. His deep industry expertise and global exposure enable him to
-                deliver strategic, high-impact solutions tailored to pharmaceutical clients.
-              </p>
-              <p>
-                Over the course of his career, he has consistently driven business growth,
-                operational excellence, and customer success across leading packaging organizations.
-              </p>
-            </div>
-
-            <div className="mt-10">
-              <h4 className="font-display text-xl font-semibold text-navy">Career Highlights</h4>
-              <ul className="mt-6 space-y-4">
-                {achievements.map((a) => (
-                  <li key={a} className="flex items-start gap-3">
-                    <span className="mt-0.5 flex-shrink-0 flex h-5 w-5 items-center justify-center rounded-full bg-bio/20 text-navy">
-                      <Check size={13} strokeWidth={2.5} />
-                    </span>
-                    <span className="text-sm md:text-base text-foreground/75 leading-relaxed">
-                      {a}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="mt-10 text-base md:text-lg text-foreground/80 leading-relaxed">
-              <p>
-                Recognizing a major gap between pharmaceutical requirements and packaging execution,
-                he founded <strong className="text-foreground font-semibold">PACK-WISE</strong>—a
-                consultancy built to deliver practical, result-oriented, and globally compliant
-                packaging solutions.
-              </p>
-            </div>
-          </div>
-        </div>
+        </Container>
       </section>
 
-      {/* 7. Strategic Vision */}
-      <section className="bg-navy-deep text-navy-foreground relative overflow-hidden">
-        <div className="absolute inset-0 hex-grid opacity-30" />
-        <div className="relative mx-auto max-w-4xl px-6 py-24 md:py-32 text-center">
-          <h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-bio">
-            Strategic Vision
-          </h2>
-          <div className="mt-8 relative">
-            <blockquote className="relative font-display text-2xl md:text-3xl lg:text-4xl font-semibold leading-[1.25] text-navy-foreground">
-              To be a trusted partner for pharmaceutical companies worldwide, delivering packaging
-              solutions that ensure{" "}
-              <span className="text-bio">
-                patient safety, regulatory excellence, and brand impact.
-              </span>
-            </blockquote>
-            {/* decorative quotes removed */}
-          </div>
-          <p className="mt-16 text-xs font-semibold uppercase tracking-[0.18em] text-white/70">
-            — Kundanraj Shah, Founder & CEO, Pack-Wise
-          </p>
-        </div>
-      </section>
+      <CtaBand
+        title="Work directly with the founder."
+        subtitle="Every brief is reviewed at senior level, under NDA."
+      />
     </>
   );
 }

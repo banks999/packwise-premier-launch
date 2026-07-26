@@ -1,15 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { SectionHeader } from "@/components/site/SectionHeader";
-import {
-  Layers,
-  ShieldCheck,
-  Network,
-  PenLine,
-  TrendingDown,
-  ClipboardList,
-  ArrowRight,
-  Check,
-} from "lucide-react";
+import { createFileRoute } from "@tanstack/react-router";
+import { CtaBand, Hero } from "@/components/site/blocks";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -47,144 +37,73 @@ export const Route = createFileRoute("/services")({
 const services = [
   {
     n: "01",
-    icon: <Layers size={22} />,
-    title: "Packaging Strategy & Development",
-    body: "Robust, market-ready packaging strategies from concept to format.",
-    bullets: [
-      "Primary & secondary packaging design",
-      "Material compatibility and stability guidance",
-      "Sustainable packaging alternatives",
-      "Format optimization for manufacturing",
-    ],
+    title: "Business Development & Market Expansion",
+    body: "Identification, approach, and development of pharmaceutical and nutraceutical accounts across the US and Indian markets, supported by three decades of established industry relationships.",
   },
   {
     n: "02",
-    icon: <ShieldCheck size={22} />,
-    title: "Regulatory Compliance Support",
-    body: "Compliance support for FDA, EMA, and global markets.",
-    bullets: [
-      "USFDA, EMA, and global market compliance",
-      "Serialization and Track & Trace implementation",
-      "Child-resistant and senior-friendly formats",
-      "Tamper-evident packaging solutions",
-    ],
+    title: "Regulated-Market Entry",
+    body: "Advisory and execution support for suppliers establishing supply into the United States and other regulated markets, including buyer qualification requirements and route-to-market planning.",
   },
   {
     n: "03",
-    icon: <Network size={22} />,
-    title: "Vendor Sourcing & Management",
-    body: "Pre-qualified supplier sourcing and qualification management.",
-    bullets: [
-      "Supplier identification and qualification",
-      "Rigid plastics, glass, and flexible films",
-      "Quality audits and corrective action (CAPA)",
-      "Contract negotiation and terms",
-    ],
+    title: "Regulatory & Compliance Advisory",
+    body: "Guidance on the filings and certifications required to supply regulated customers, including US DMF, cGMP, and market-specific approvals.",
   },
   {
     n: "04",
-    icon: <PenLine size={22} />,
-    title: "Artwork & Design Coordination",
-    body: "Artwork lifecycle management for compliant brand expression.",
-    bullets: [
-      "Regulatory-compliant artwork creation",
-      "Leaflets, IFUs, and Medication Guides",
-      "Labeling control and version management",
-      "Print proofing and color consistency",
-    ],
+    title: "Product & Technical Development",
+    body: "Support in developing packaging products, formats, and specifications aligned to target-customer requirements.",
   },
   {
     n: "05",
-    icon: <TrendingDown size={22} />,
-    title: "Cost Optimization",
-    body: "Targeted packaging cost reductions without quality loss.",
-    bullets: [
-      "Packaging spend and value analysis",
-      "Material downgauging and right-sizing",
-      "Supply base consolidation",
-      "Logistics and palletization efficiency",
-    ],
+    title: "Operations & Capacity Advisory",
+    body: "Support in scaling production capacity, cost structure, and supply reliability to meet larger regulated accounts.",
   },
   {
     n: "06",
-    icon: <ClipboardList size={22} />,
-    title: "Project Management",
-    body: "Rapid, coordinated delivery from concept to launch.",
-    bullets: [
-      "Cross-functional team leadership",
-      "Timeline and milestone tracking",
-      "Risk identification and mitigation",
-      "Launch readiness and commercial rollout",
-    ],
+    title: "Customer Qualification & Audit Readiness",
+    body: "Preparing suppliers to meet the quality-system and audit standards expected by pharmaceutical customers.",
   },
 ];
 
 function ServicesPage() {
   return (
     <>
-      <section className="bg-navy-deep text-navy-foreground relative overflow-hidden">
-        <div className="absolute inset-0 hex-grid opacity-40" />
-        <div className="relative mx-auto max-w-7xl px-6 py-24 md:py-36">
-          <div className="max-w-4xl">
-            <span className="text-xs font-semibold uppercase tracking-[0.18em] text-bio">
-              Our Capabilities
-            </span>
-            <h1 className="mt-4 font-display text-4xl md:text-6xl font-semibold leading-[1.05]">
-              Six core practices. <span className="text-bio">One operating standard.</span>
-            </h1>
-            <p className="mt-6 max-w-2xl text-white/70 text-lg leading-relaxed">
-              Pack-Wise engagements integrate strategic development, compliance, and supply chain
-              disciplines into a single, accountable mandate.
-            </p>
-          </div>
-        </div>
-      </section>
+      <Hero
+        eyebrow="Services"
+        title="Advisory across the full route to market."
+        subtitle="Six connected services that take suppliers from first account approach through to full qualification with regulated pharmaceutical customers."
+        titleMaxWidth="16ch"
+      />
 
-      <section className="mx-auto max-w-7xl px-6 py-24 md:py-32 space-y-6">
-        {services.map((s) => (
-          <article
-            key={s.n}
-            className="group relative rounded-2xl border border-border bg-card p-8 md:p-12 hover:border-navy hover:shadow-2xl hover:shadow-navy/10 hover:-translate-y-1 transition-all duration-300"
-          >
-            <div className="grid gap-10 md:grid-cols-[1fr_1.5fr]">
-              <div>
-                <div className="flex items-center gap-3">
-                  <span className="hex-clip flex h-12 w-14 items-center justify-center bg-navy text-bio">
-                    {s.icon}
-                  </span>
-                  <span className="font-display text-3xl font-semibold text-bio-foreground/30">
-                    {s.n}
-                  </span>
-                </div>
-                <h2 className="mt-6 font-display text-2xl md:text-3xl font-semibold text-navy leading-tight">
+      <section>
+        <div className="mx-auto max-w-[1000px] px-6 py-[clamp(48px,7vw,88px)] md:px-12">
+          {services.map((s, i) => (
+            <div
+              key={s.n}
+              className={`flex flex-wrap items-start gap-[clamp(20px,3vw,44px)] py-8 ${
+                i < services.length - 1 ? "border-b border-border" : ""
+              }`}
+            >
+              <span className="min-w-[56px] flex-none font-display text-[clamp(28px,4vw,44px)] font-bold leading-none text-[#E1DE9A]">
+                {s.n}
+              </span>
+              <div className="flex-[1_1_300px]">
+                <h2 className="mb-3 font-display text-[clamp(20px,2.4vw,26px)] font-semibold leading-tight text-navy">
                   {s.title}
                 </h2>
-              </div>
-              <div>
-                <p className="text-foreground/75 text-base md:text-lg leading-relaxed">{s.body}</p>
-                <ul className="mt-6 grid gap-3 sm:grid-cols-2">
-                  {s.bullets.map((b) => (
-                    <li key={b} className="flex items-start gap-2.5 text-sm text-foreground/80">
-                      <Check size={16} className="mt-0.5 shrink-0 text-navy" />
-                      <span>{b}</span>
-                    </li>
-                  ))}
-                </ul>
+                <p className="max-w-[62ch] text-base leading-[1.7] text-foreground">{s.body}</p>
               </div>
             </div>
-          </article>
-        ))}
-
-        <div className="pt-10 text-center">
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-2 rounded-md bg-bio px-7 py-4 text-sm font-semibold text-navy hover:bg-bio/90 hover:shadow-xl hover:shadow-bio/30 transition-all"
-          >
-            Schedule a Consultation
-            <ArrowRight size={16} />
-          </Link>
+          ))}
         </div>
       </section>
+
+      <CtaBand
+        title="Discuss your requirement."
+        subtitle="Send a brief and receive a confidential review within 24 business hours."
+      />
     </>
   );
 }

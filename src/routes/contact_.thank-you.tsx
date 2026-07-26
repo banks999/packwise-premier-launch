@@ -1,5 +1,4 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { CheckCircle2 } from "lucide-react";
 
 export const Route = createFileRoute("/contact_/thank-you")({
   head: () => ({
@@ -17,27 +16,22 @@ export const Route = createFileRoute("/contact_/thank-you")({
 
 function ThankYouPage() {
   return (
-    <section className="bg-navy-deep text-navy-foreground relative overflow-hidden min-h-[70vh] flex items-center">
-      <div className="absolute inset-0 hex-grid opacity-40" />
-      <div className="relative mx-auto max-w-3xl px-6 py-24 md:py-32 text-center">
-        <span className="hex-clip inline-flex h-14 w-16 items-center justify-center bg-bio text-navy">
-          <CheckCircle2 size={26} />
-        </span>
-        <h1 className="mt-8 font-display text-3xl md:text-5xl font-semibold leading-tight">
-          Brief Received.
+    <section className="flex min-h-[70vh] items-center bg-slate-canvas">
+      <div className="mx-auto max-w-[640px] px-6 py-24 text-center md:px-12">
+        <span className="mx-auto mb-7 block h-[3px] w-14 bg-bio" />
+        <h1 className="font-display text-[clamp(28px,3.6vw,40px)] font-bold tracking-[-0.01em] text-navy">
+          Brief received.
         </h1>
-        <p className="mt-5 max-w-xl mx-auto text-base md:text-lg text-white/70 leading-relaxed">
-          Your project brief has been received and will be reviewed under NDA. An executive advisor
-          will respond within 24 business hours.
+        <p className="mx-auto mb-9 mt-4 max-w-[48ch] text-base leading-relaxed text-foreground md:text-lg">
+          Thank you. An executive advisor will review your brief under NDA and respond within 24
+          business hours.
         </p>
-        <div className="mt-10">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-md bg-bio px-7 py-4 text-sm font-semibold text-navy hover:bg-bio/90 hover:shadow-xl hover:shadow-bio/20 transition-all"
-          >
-            Return Home
-          </Link>
-        </div>
+        <Link
+          to="/"
+          className="inline-flex items-center justify-center rounded-lg bg-bio px-7 py-3.5 font-display text-sm font-semibold text-navy ring-1 ring-inset ring-navy/20 transition-all duration-200 ease-[cubic-bezier(.34,1.56,.64,1)] hover:-translate-y-0.5 hover:scale-[1.012] hover:shadow-[0_10px_22px_rgba(28,42,68,0.28)]"
+        >
+          Return home
+        </Link>
       </div>
     </section>
   );
