@@ -81,7 +81,7 @@ export function Hero({
 export function CtaBand({ title, subtitle }: { title: string; subtitle: string }) {
   return (
     <section className="bg-navy">
-      <div className="mx-auto max-w-[1180px] px-6 py-24 text-center md:px-12 md:py-28">
+      <div className="mx-auto max-w-[1280px] 2xl:max-w-[1536px] px-6 py-24 text-center md:px-12 md:py-28">
         <span className="mx-auto mb-7 block h-[3px] w-14 bg-bio" />
         <h2 className="font-display text-[clamp(1.625rem,3.6vw,2.5rem)] font-bold leading-tight tracking-[-0.01em] text-white">
           {title}
@@ -104,6 +104,6 @@ export function Container({
   className?: string;
 }) {
   return (
-    <div className={cn("mx-auto max-w-[1180px] px-6 md:px-12", className)}>{children}</div>
+    <div className={cn("mx-auto max-w-[1280px] 2xl:max-w-[1536px] px-6 md:px-12", className)}>{children}</div>
   );
 }

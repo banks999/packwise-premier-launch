@@ -10,7 +10,7 @@ const links = [
 export function Footer() {
   return (
     <footer className="bg-navy text-white">
-      <div className="mx-auto max-w-[1180px] px-6 pb-10 pt-14 md:px-12 md:pt-[72px]">
+      <div className="mx-auto max-w-[1280px] 2xl:max-w-[1536px] px-6 pb-10 pt-14 md:px-12 md:pt-[72px]">
         <div className="flex flex-wrap items-start justify-between gap-7">
           <div>
             <div className="font-display text-2xl font-bold tracking-[-0.01em] text-white">
