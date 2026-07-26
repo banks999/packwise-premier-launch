@@ -74,8 +74,8 @@ export function Navbar() {
     <header className="sticky top-0 z-50 border-b border-border bg-background">
       <div className="mx-auto flex min-h-[78px] max-w-[1280px] 2xl:max-w-[1536px] flex-wrap items-center justify-between gap-5 px-6 md:px-12">
         <Link to="/" className="flex flex-col items-start gap-px py-3">
-          <img src={logoImg} alt="Pack-Wise" width={210} height={71} className="block h-[52px] w-auto" />
-          <span className="whitespace-nowrap pl-[66px] font-display text-[10.5px] font-semibold uppercase leading-tight tracking-[0.2em] text-[#B7A53A]">
+          <img src={logoImg} alt="Pack-Wise" width={210} height={71} className="block h-[71px] w-[210px]" />
+          <span className="-mt-[15px] whitespace-nowrap pl-[66px] font-display text-[10.5px] font-semibold uppercase leading-tight tracking-[0.2em] text-[#B7A53A]">
             Packaging that performs
           </span>
         </Link>
