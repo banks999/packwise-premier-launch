@@ -123,7 +123,7 @@ function HomePage() {
       <section className="border-y border-border bg-slate-canvas">
         <Container className="py-[clamp(56px,8vw,96px)]">
           <Eyebrow className="mb-9">Who we work with</Eyebrow>
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(248px,1fr))] gap-[22px]">
+          <div className="grid grid-cols-1 gap-[22px] sm:grid-cols-2 lg:grid-cols-4">
             {audience.map((a) => (
               <div
                 key={a.title}
@@ -147,7 +147,7 @@ function HomePage() {
           <h2 className="mb-11 font-display text-[clamp(26px,3.4vw,38px)] font-bold tracking-[-0.01em] text-navy">
             What we do
           </h2>
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-px border border-border bg-border">
+          <div className="grid grid-cols-1 gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
             {services.map((s) => (
               <div key={s.n} className="flex flex-col gap-3 bg-card p-8">
                 <span className="font-display text-[13px] font-bold tracking-[0.1em] text-[#B9B24E]">
