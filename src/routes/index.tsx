@@ -1,24 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import {
-  ArrowRight,
-  ShieldCheck,
-  Globe2,
-  Network,
-  Layers,
-  PenLine,
-  TrendingDown,
-  ClipboardList,
-  Package,
-  FileText,
-  Tag,
-  Lock,
-  Target,
-  Sliders,
-  Zap,
-} from "lucide-react";
-import { SectionHeader } from "@/components/site/SectionHeader";
-import { TrustedBy } from "@/components/site/TrustedBy";
-import heroImg from "@/assets/hero-plant.webp";
+import { createFileRoute } from "@tanstack/react-router";
+import { Container, CtaBand, CtaButton, Eyebrow, Hero } from "@/components/site/blocks";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -53,259 +34,169 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
-const consultingServices = [
+const audience = [
   {
-    icon: <Layers size={22} />,
-    title: "Packaging Strategy & Development",
-    body: "Tailored designs meeting strict product requirements and regulatory guidelines.",
+    title: "Primary packaging manufacturers",
+    body: "HDPE and PET bottles, PP closures, and glass containers.",
   },
   {
-    icon: <ShieldCheck size={22} />,
-    title: "Regulatory Compliance Support",
-    body: "Built around FDA, EU, and global labelling/serialization requirements from day one.",
+    title: "Printed and secondary packaging",
+    body: "Leaflets, labels, inserts, outserts, IML, and mono cartons.",
   },
   {
-    icon: <Network size={22} />,
-    title: "Vendor Sourcing & Management",
-    body: "Direct access to trusted manufacturers for bottles, closures, glass, and leaflets.",
+    title: "Contract packaging organizations",
+    body: "Co-packers serving pharmaceutical and nutraceutical brands.",
   },
   {
-    icon: <PenLine size={22} />,
-    title: "Artwork & Design Coordination",
-    body: "Market-ready packaging designs aligning branding with regulatory needs.",
-  },
-  {
-    icon: <TrendingDown size={22} />,
-    title: "Cost Optimization",
-    body: "Targeted downgauging, right-sizing, and supply-base consolidation to cut cost without compromising quality.",
-  },
-  {
-    icon: <ClipboardList size={22} />,
-    title: "Project Management",
-    body: "Seamless stakeholder coordination ensuring rapid concept-to-commercialization execution.",
+    title: "Serialization and track-and-trace",
+    body: "Providers of serialization and track-and-trace capabilities.",
   },
 ];
 
-const materialExpertise = [
+const services = [
   {
-    icon: <Package size={22} />,
-    title: "Rigid Formats",
-    body: "HDPE bottles, PP closures, medical devices and glass bottles.",
+    n: "01",
+    title: "Business Development & Market Expansion",
+    body: "Identification, approach, and development of pharmaceutical and nutraceutical accounts across the US and Indian markets, supported by three decades of established industry relationships.",
   },
   {
-    icon: <FileText size={22} />,
-    title: "Printed Componentry",
-    body: "Folding cartons, packaging kits, and pressure-sensitive labels.",
+    n: "02",
+    title: "Regulated-Market Entry",
+    body: "Advisory and execution support for suppliers establishing supply into the United States and other regulated markets, including buyer qualification requirements and route-to-market planning.",
   },
   {
-    icon: <Tag size={22} />,
-    title: "Regulatory Print",
-    body: "Shrink sleeves, IML, digital labels, and leaflets/booklets (IFUs, Med Guides).",
+    n: "03",
+    title: "Regulatory & Compliance Advisory",
+    body: "Guidance on the filings and certifications required to supply regulated customers, including US DMF, cGMP, and market-specific approvals.",
   },
   {
-    icon: <Lock size={22} />,
-    title: "Supply Chain Security",
-    body: "Serialization and track-and-trace readiness for global markets.",
+    n: "04",
+    title: "Product & Technical Development",
+    body: "Support in developing packaging products, formats, and specifications aligned to target-customer requirements.",
+  },
+  {
+    n: "05",
+    title: "Operations & Capacity Advisory",
+    body: "Support in scaling production capacity, cost structure, and supply reliability to meet larger regulated accounts.",
+  },
+  {
+    n: "06",
+    title: "Customer Qualification & Audit Readiness",
+    body: "Preparing suppliers to meet the quality-system and audit standards expected by pharmaceutical customers.",
   },
 ];
 
-const differentiators = [
-  {
-    icon: <Target size={22} />,
-    title: "100% Industry-Focused",
-    body: "Entirely dedicated to pharmaceutical packaging complexities.",
-  },
-  {
-    icon: <ShieldCheck size={22} />,
-    title: "Compliance-Driven",
-    body: "Quality and regulatory alignment embedded in every step.",
-  },
-  {
-    icon: <Globe2 size={22} />,
-    title: "Global Perspective",
-    body: "Deep operational experience across US, EU, and emerging markets.",
-  },
-  {
-    icon: <Sliders size={22} />,
-    title: "Flexible & Client-Centric",
-    body: "Customized consulting models scaled to your exact project needs.",
-  },
-  {
-    icon: <Zap size={22} />,
-    title: "Speed & Reliability",
-    body: "Optimized workflows built to accelerate your market timeline safely.",
-  },
+const whyPoints = [
+  "Over 32 years of operating experience in pharmaceutical packaging across manufacturing, quality, and commercial functions.",
+  "Direct experience establishing a fully compliant manufacturing and warehousing operation in the United States.",
+  "Established relationships across pharmaceutical and nutraceutical companies in the US and India.",
+  "Working knowledge of both supplier capability and customer qualification requirements.",
+  "Senior-level involvement on every engagement.",
 ];
 
 function HomePage() {
   return (
     <>
-      {/* 1. Hero Section */}
-      <section className="relative isolate overflow-hidden bg-navy-deep text-navy-foreground">
-        <div className="absolute inset-0">
-          <img
-            src={heroImg}
-            alt="Pharmaceutical packaging facility"
-            width={1920}
-            height={1080}
-            fetchPriority="high"
-            className="h-full w-full object-cover opacity-30"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-navy-deep via-navy-deep/90 to-navy-deep/40" />
-          <div className="absolute inset-0 hex-grid opacity-40" />
-        </div>
+      <Hero
+        eyebrow="Pharmaceutical Packaging · Consulting"
+        title="Business development and consulting for the pharmaceutical packaging industry."
+        subtitle="We help packaging manufacturers and contract packagers expand their customer base and enter regulated markets."
+        titleMaxWidth="17ch"
+      >
+        <CtaButton />
+      </Hero>
 
-        <div className="relative mx-auto max-w-7xl px-6 py-20 md:py-32">
-          <div className="max-w-3xl">
-            <span className="inline-block text-xs font-semibold uppercase tracking-[0.18em] text-bio">
-              Pack-Wise — Packaging That Performs.
-            </span>
-            <h1 className="mt-5 font-display text-4xl md:text-6xl lg:text-7xl font-semibold leading-[1.02] tracking-tight">
-              Pharma Packaging Consulting That Drives{" "}
-              <span className="text-bio">Compliance & Efficiency.</span>
-            </h1>
-            <p className="mt-7 max-w-2xl text-base md:text-lg text-white/70 leading-relaxed">
-              Practical packaging consulting: compliance, sourcing, and cost reduction.
-            </p>
-            <div className="mt-10">
-              <Link
-                to="/contact"
-                className="group inline-flex items-center gap-2 rounded-md bg-bio px-7 py-4 text-sm font-semibold text-navy hover:bg-bio/90 hover:shadow-xl hover:shadow-bio/20 transition-all"
+      {/* Intro statement */}
+      <section>
+        <div className="mx-auto max-w-[900px] px-6 py-[clamp(56px,8vw,96px)] text-center md:px-12">
+          <span className="mb-7 inline-block h-[3px] w-14 bg-bio" />
+          <p className="font-display text-[clamp(19px,2.4vw,26px)] font-normal leading-[1.55] text-navy">
+            Pack-Wise is a business development and consulting firm serving the pharmaceutical and
+            nutraceutical packaging sector. We work with packaging manufacturers and contract
+            packagers to expand their customer base, establish supply into regulated markets, and
+            strengthen the technical and regulatory capabilities their customers require.
+          </p>
+        </div>
+      </section>
+
+      {/* Who we work with */}
+      <section className="border-y border-border bg-slate-canvas">
+        <Container className="py-[clamp(56px,8vw,96px)]">
+          <Eyebrow className="mb-9">Who we work with</Eyebrow>
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(248px,1fr))] gap-[22px]">
+            {audience.map((a) => (
+              <div
+                key={a.title}
+                className="flex flex-col gap-3.5 border border-border bg-card p-[26px] pt-[30px]"
               >
-                Schedule a Consultation
-                <ArrowRight
-                  size={16}
-                  className="group-hover:translate-x-0.5 transition-transform"
-                />
-              </Link>
+                <span className="block h-1 w-[34px] bg-bio" />
+                <h3 className="font-display text-lg font-semibold leading-snug text-navy">
+                  {a.title}
+                </h3>
+                <p className="text-[14.5px] leading-relaxed text-foreground">{a.body}</p>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* What we do */}
+      <section>
+        <Container className="py-[clamp(56px,8vw,96px)]">
+          <Eyebrow className="mb-3">Services</Eyebrow>
+          <h2 className="mb-11 font-display text-[clamp(26px,3.4vw,38px)] font-bold tracking-[-0.01em] text-navy">
+            What we do
+          </h2>
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-px border border-border bg-border">
+            {services.map((s) => (
+              <div key={s.n} className="flex flex-col gap-3 bg-card p-8">
+                <span className="font-display text-[13px] font-bold tracking-[0.1em] text-[#B9B24E]">
+                  {s.n}
+                </span>
+                <h3 className="font-display text-[19px] font-semibold leading-snug text-navy">
+                  {s.title}
+                </h3>
+                <p className="text-[14.5px] leading-relaxed text-foreground">{s.body}</p>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* Why Pack-Wise + Founder */}
+      <section className="border-y border-border bg-slate-canvas">
+        <Container className="flex flex-wrap gap-[clamp(36px,5vw,64px)] py-[clamp(56px,8vw,96px)]">
+          <div className="min-w-[300px] flex-[2_1_340px]">
+            <Eyebrow className="mb-8">Why Pack-Wise</Eyebrow>
+            <div className="flex flex-col gap-5">
+              {whyPoints.map((p) => (
+                <div key={p} className="flex items-start gap-4">
+                  <span className="mt-[7px] block h-2.5 w-2.5 flex-none bg-bio" />
+                  <p className="text-base leading-relaxed text-[#3A4150]">{p}</p>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
-
-        {/* Trusted By Strip */}
-        <div className="relative border-t border-white/10 bg-navy-deep py-8 text-center z-10">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-bio mb-6">
-            Trusted by pharmaceutical manufacturers
-          </p>
-          <TrustedBy />
-        </div>
-      </section>
-
-      {/* 2. Corporate Overview (condensed) */}
-      <section className="mx-auto max-w-5xl px-6 py-24 md:py-32">
-        <SectionHeader
-          eyebrow="Who We Are"
-          title="A specialized consultancy built for pharmaceutical packaging excellence."
-        />
-        <ul className="mt-8 space-y-4 text-base md:text-lg text-foreground/80 leading-relaxed list-disc pl-5">
-          <li>Regulatory-first packaging consulting for global markets.</li>
-          <li>End-to-end sourcing and vendor management.</li>
-          <li>Practical cost and timeline optimization for product launches.</li>
-        </ul>
-      </section>
-
-      {/* 3. Core Consulting Services */}
-      <section className="bg-slate-canvas border-y border-border">
-        <div className="mx-auto max-w-7xl px-6 py-24 md:py-32">
-          <SectionHeader
-            eyebrow="Core Services"
-            title="End-to-end consulting across the entire packaging lifecycle."
-            subtitle="We provide comprehensive support from strategy through commercialization, with every engagement tailored to your exact requirements."
-          />
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {consultingServices.map((s) => (
-              <IconCard key={s.title} icon={s.icon} title={s.title} body={s.body} />
-            ))}
+          <div className="min-w-[270px] flex-[1_1_280px] border-l-4 border-bio bg-border p-[clamp(30px,3vw,40px)]">
+            <span className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-foreground">
+              Founder &amp; CEO
+            </span>
+            <h3 className="mb-[18px] mt-3.5 font-display text-[26px] font-bold text-navy">
+              Kundanraj Shah
+            </h3>
+            <p className="text-[15.5px] leading-[1.7] text-foreground">
+              Over 32 years in the pharmaceutical packaging industry, including five years
+              establishing and operating a compliant manufacturing and warehousing facility in New
+              Jersey, USA.
+            </p>
           </div>
-        </div>
+        </Container>
       </section>
 
-      {/* 4. Technical & Material Expertise */}
-      <section className="mx-auto max-w-7xl px-6 py-24 md:py-32">
-        <SectionHeader
-          eyebrow="Technical Expertise"
-          title="Hands-on expertise across highly regulated formats."
-          subtitle="We bring deep material knowledge and compliance fluency to the most demanding pharmaceutical packaging requirements."
-        />
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {materialExpertise.map((m) => (
-            <IconCard key={m.title} icon={m.icon} title={m.title} body={m.body} />
-          ))}
-        </div>
-      </section>
-
-      {/* 5. Strategic Differentiators */}
-      <section className="bg-navy-deep text-navy-foreground relative overflow-hidden">
-        <div className="absolute inset-0 hex-grid opacity-30" />
-        <div className="relative mx-auto max-w-5xl px-6 py-24 md:py-32">
-          <SectionHeader
-            eyebrow="Why Choose Us"
-            title="Five reasons pharma companies trust Pack-Wise."
-            align="center"
-            dark
-          />
-          <div className="mt-14 divide-y divide-white/10 border-y border-white/10">
-            {differentiators.map((d) => (
-              <DifferentiatorRow key={d.title} icon={d.icon} title={d.title} body={d.body} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section>
-        <div className="mx-auto max-w-5xl px-6 py-20 md:py-28 text-center">
-          <h2 className="font-display text-3xl md:text-5xl font-semibold text-navy leading-tight">
-            Ready to optimize your pharmaceutical packaging?
-          </h2>
-          <p className="mt-5 text-muted-foreground max-w-2xl mx-auto">
-            All briefs are reviewed under strict confidentiality within 24 business hours.
-          </p>
-          <div className="mt-8">
-            <Link
-              to="/contact"
-              className="group inline-flex items-center gap-2 rounded-md bg-bio px-7 py-4 text-sm font-semibold text-navy hover:bg-bio/90 hover:shadow-xl hover:shadow-bio/20 transition-all"
-            >
-              Schedule a Consultation
-              <ArrowRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
-            </Link>
-          </div>
-        </div>
-      </section>
+      <CtaBand
+        title="Ready to expand into new markets?"
+        subtitle="Schedule a confidential consultation with an executive advisor."
+      />
     </>
-  );
-}
-
-function IconCard({ icon, title, body }: { icon: React.ReactNode; title: string; body: string }) {
-  return (
-    <div className="rounded-xl border border-border bg-card p-7 hover:border-navy/40 hover:shadow-lg hover:shadow-navy/5 transition-all duration-300">
-      <span className="hex-clip flex h-10 w-11 items-center justify-center bg-navy text-bio">
-        {icon}
-      </span>
-      <h3 className="mt-5 font-display text-lg font-semibold text-navy">{title}</h3>
-      <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{body}</p>
-    </div>
-  );
-}
-
-function DifferentiatorRow({
-  icon,
-  title,
-  body,
-}: {
-  icon: React.ReactNode;
-  title: string;
-  body: string;
-}) {
-  return (
-    <div className="flex items-start gap-6 py-6">
-      <span className="hex-clip flex h-11 w-12 shrink-0 items-center justify-center bg-bio text-navy">
-        {icon}
-      </span>
-      <div>
-        <h3 className="font-display text-lg font-semibold text-navy-foreground">{title}</h3>
-        <p className="mt-2 text-sm text-white/70 leading-relaxed">{body}</p>
-      </div>
-    </div>
   );
 }
